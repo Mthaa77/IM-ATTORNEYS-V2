@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { BannerProvider } from "@/components/im/BannerContext";
 import { PracticeAreaPage } from "@/components/im/PracticeAreaPage";
 
@@ -67,113 +67,122 @@ export default function Home() {
       <Navigation activePracticeArea={activePracticeArea} onGoHome={handleBackToHome} />
 
       <AnimatePresence mode="wait">
-        {activePracticeArea && (
+        {activePracticeArea ? (
           <PracticeAreaPage
             key={activePracticeArea}
             slug={activePracticeArea}
             onBack={handleBackToHome}
             onNavigate={handleNavigatePracticeArea}
           />
+        ) : (
+          <motion.main
+            key="homepage"
+            className="min-h-screen overflow-x-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {/* Hero Section */}
+            <section id="home">
+              <Hero />
+            </section>
+
+            {/* Welcome Message from Director */}
+            <WelcomeSection />
+
+            {/* Stats Bar */}
+            <StatsBar />
+
+            {/* Trust & Certifications */}
+            <TrustBadges />
+
+            {/* Client Marquee */}
+            <ClientMarquee />
+
+            {/* About / The Firm Section */}
+            <section id="about">
+              <TheFirm />
+            </section>
+
+            {/* Services Section */}
+            <section id="services">
+              <ServicesGrid onOpenPracticeArea={handleNavigatePracticeArea} />
+            </section>
+
+            {/* Practice Area — Interactive Onboarding Assessment */}
+            <PracticeAreaOnboarding />
+
+            {/* Our Process */}
+            <OurProcess />
+
+            {/* 24/7 Emergency CTA */}
+            <EmergencyCTA />
+
+            {/* Founder Spotlight */}
+            <Founder />
+
+            {/* Team Section */}
+            <section id="team">
+              <TeamSection />
+            </section>
+
+            {/* Vacation Programme */}
+            <VacationProgramme />
+
+            {/* Parallax Quote */}
+            <ParallaxQuote />
+
+            {/* Testimonials Section */}
+            <section id="testimonials">
+              <Testimonials />
+            </section>
+
+            {/* Before/After Results Slider */}
+            <BeforeAfterSlider />
+
+            {/* Track Record */}
+            <TrackRecord />
+
+            {/* Awards & Recognition */}
+            <AwardsRecognition />
+
+            {/* Case Results */}
+            <CaseResults />
+
+            {/* Milestones Timeline */}
+            <MilestonesTimeline />
+
+            {/* Legal Insights */}
+            <LegalInsights />
+
+            {/* Legal Resources */}
+            <LegalResources />
+
+            {/* Fees & Billing */}
+            <FeesAndBilling />
+
+            {/* FAQ Section */}
+            <section id="faq">
+              <FAQSection />
+            </section>
+
+            {/* Contact Section */}
+            <section id="contact">
+              <ContactForm />
+            </section>
+
+            {/* Office Hours */}
+            <OfficeHours />
+
+            {/* Location & Map */}
+            <LocationMap />
+
+            {/* Newsletter */}
+            <NewsletterSection />
+          </motion.main>
         )}
       </AnimatePresence>
-
-          <main className="min-h-screen overflow-x-hidden">
-        {/* Hero Section */}
-        <section id="home">
-          <Hero />
-        </section>
-
-        {/* Welcome Message from Director */}
-        <WelcomeSection />
-
-        {/* Stats Bar */}
-        <StatsBar />
-
-        {/* Trust & Certifications */}
-        <TrustBadges />
-
-        {/* Client Marquee */}
-        <ClientMarquee />
-
-        {/* About / The Firm Section */}
-        <section id="about">
-          <TheFirm />
-        </section>
-
-        {/* Services Section */}
-        <section id="services">
-          <ServicesGrid onOpenPracticeArea={handleNavigatePracticeArea} />
-        </section>
-
-        {/* Practice Area — Interactive Onboarding Assessment */}
-        <PracticeAreaOnboarding />
-
-        {/* Our Process */}
-        <OurProcess />
-
-        {/* 24/7 Emergency CTA */}
-        <EmergencyCTA />
-
-        {/* Founder Spotlight */}
-        <Founder />
-
-        {/* Team Section */}
-        <section id="team">
-          <TeamSection />
-        </section>
-
-        {/* Vacation Programme */}
-        <VacationProgramme />
-
-        {/* Parallax Quote */}
-        <ParallaxQuote />
-
-        {/* Testimonials Section */}
-        <section id="testimonials">
-          <Testimonials />
-        </section>
-
-        {/* Before/After Results Slider */}
-        <BeforeAfterSlider />
-
-        {/* Track Record */}
-        <TrackRecord />
-
-        {/* Awards & Recognition */}
-        <AwardsRecognition />
-
-        {/* Case Results */}
-        <CaseResults />
-
-        {/* Milestones Timeline */}
-        <MilestonesTimeline />
-
-        {/* Legal Insights */}
-        <LegalInsights />
-
-        {/* Legal Resources */}
-        <LegalResources />
-
-        {/* Fees & Billing */}
-        <FeesAndBilling />
-
-        {/* FAQ Section */}
-        <section id="faq">
-          <FAQSection />
-        </section>
-
-        {/* Contact Section */}
-        <ContactForm />
-
-        {/* Office Hours */}
-        <OfficeHours />
-
-        {/* Location & Map */}
-        <LocationMap />
-
-        {/* Newsletter */}
-        <NewsletterSection />
-      </main>
 
       {/* Footer — with compliance modal triggers */}
       <Footer onOpenModal={open} />

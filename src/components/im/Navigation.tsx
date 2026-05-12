@@ -83,11 +83,18 @@ export function Navigation({ activePracticeArea, onGoHome }: NavigationProps) {
     setIsMobileOpen(false);
     if (activePracticeArea && onGoHome) {
       onGoHome();
-      const targetId = href.replace("#", "");
-      setTimeout(() => {
-        const el = document.getElementById(targetId);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
-      }, 350);
+      // Wait for AnimatePresence to swap components, then scroll
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          const targetId = href.replace("#", "");
+          const el = document.getElementById(targetId);
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth" });
+          } else {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        }, 400);
+      });
     } else {
       const el = document.querySelector(href);
       if (el) {
@@ -98,14 +105,22 @@ export function Navigation({ activePracticeArea, onGoHome }: NavigationProps) {
 
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
+    setIsMobileOpen(false);
     if (activePracticeArea && onGoHome) {
-      setIsMobileOpen(false);
       onGoHome();
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 350);
+      // Wait for AnimatePresence to swap back to homepage, then scroll to top
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 400);
+      });
     } else {
-      handleNavClick("#home");
+      const el = document.querySelector("#home");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
     }
   };
 

@@ -68,12 +68,20 @@ const hexPositions = [
   { col: 2, row: 1, yOffset: 28 },
 ];
 
+/* ─── Deterministic seeded pseudo-random ─── */
+function seededRandom(seed: number) {
+  const x = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
+  return x - Math.floor(x);
+}
+
 /* ─── Floating Gold Particle ─── */
 function GoldParticle({ index }: { index: number }) {
-  const size = 2 + Math.random() * 4;
-  const left = Math.random() * 100;
-  const delay = Math.random() * 8;
-  const duration = 10 + Math.random() * 12;
+  const s = index + 1; // seed offset (avoid 0)
+  const size = 2 + seededRandom(s) * 4;
+  const left = seededRandom(s + 50) * 100;
+  const delay = seededRandom(s + 100) * 8;
+  const duration = 10 + seededRandom(s + 150) * 12;
+  const opacity = 0.15 + seededRandom(s + 200) * 0.25;
 
   return (
     <div
@@ -84,7 +92,7 @@ function GoldParticle({ index }: { index: number }) {
         height: size,
         left: `${left}%`,
         bottom: "-5%",
-        background: `radial-gradient(circle, rgba(198,168,75,${0.15 + Math.random() * 0.25}) 0%, transparent 70%)`,
+        background: `radial-gradient(circle, rgba(198,168,75,${opacity}) 0%, transparent 70%)`,
         animation: `particleFloat ${duration}s ${delay}s linear infinite`,
       }}
     />
