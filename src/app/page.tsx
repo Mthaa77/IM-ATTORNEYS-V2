@@ -4,7 +4,10 @@ import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BannerProvider } from "@/components/im/BannerContext";
 import { PracticeAreaPage } from "@/components/im/PracticeAreaPage";
+import { ComplianceModals, useComplianceModals } from "@/components/im/ComplianceModals";
+import dynamic from "next/dynamic";
 
+// ── Above-the-fold: loaded eagerly for instant FCP ──
 import { LoadingScreen } from "@/components/im/LoadingScreen";
 import { OnboardingBanner } from "@/components/im/OnboardingBanner";
 import { Navigation } from "@/components/im/Navigation";
@@ -13,41 +16,115 @@ import { WelcomeSection } from "@/components/im/WelcomeSection";
 import { StatsBar } from "@/components/im/StatsBar";
 import { TheFirm } from "@/components/im/TheFirm";
 import { ServicesGrid } from "@/components/im/ServicesGrid";
-import { EmergencyCTA } from "@/components/im/EmergencyCTA";
-import { Founder } from "@/components/im/Founder";
-import { TeamSection } from "@/components/im/TeamSection";
-import { VacationProgramme } from "@/components/im/VacationProgramme";
-import { ParallaxQuote } from "@/components/im/ParallaxQuote";
-import { Testimonials } from "@/components/im/Testimonials";
-import { FAQSection } from "@/components/im/FAQSection";
-import { LegalInsights } from "@/components/im/LegalInsights";
-import { ContactForm } from "@/components/im/ContactForm";
-import { LocationMap } from "@/components/im/LocationMap";
-import { Footer } from "@/components/im/Footer";
-import { WhatsAppButton } from "@/components/im/WhatsAppButton";
-import { BailFloatingIcon } from "@/components/im/BailFloatingIcon";
-import { ClientIntakeOnboarding } from "@/components/im/ClientIntakeOnboarding";
-import { NewsletterSection } from "@/components/im/NewsletterSection";
 import { TrustBadges } from "@/components/im/TrustBadges";
-import { TrackRecord } from "@/components/im/TrackRecord";
 
-import { OurProcess } from "@/components/im/OurProcess";
+// ── Below-the-fold: lazy-loaded for faster initial load ──
+const ClientMarquee = dynamic(
+  () => import("@/components/im/ClientMarquee").then((m) => ({ default: m.ClientMarquee })),
+  { ssr: false }
+);
+const PracticeAreaOnboarding = dynamic(
+  () => import("@/components/im/PracticeAreaOnboarding").then((m) => ({ default: m.PracticeAreaOnboarding })),
+  { ssr: false }
+);
+const OurProcess = dynamic(
+  () => import("@/components/im/OurProcess").then((m) => ({ default: m.OurProcess })),
+  { ssr: false }
+);
+const EmergencyCTA = dynamic(
+  () => import("@/components/im/EmergencyCTA").then((m) => ({ default: m.EmergencyCTA })),
+  { ssr: false }
+);
+const Founder = dynamic(
+  () => import("@/components/im/Founder").then((m) => ({ default: m.Founder })),
+  { ssr: false }
+);
+const TeamSection = dynamic(
+  () => import("@/components/im/TeamSection").then((m) => ({ default: m.TeamSection })),
+  { ssr: false }
+);
+const VacationProgramme = dynamic(
+  () => import("@/components/im/VacationProgramme").then((m) => ({ default: m.VacationProgramme })),
+  { ssr: false }
+);
+const ParallaxQuote = dynamic(
+  () => import("@/components/im/ParallaxQuote").then((m) => ({ default: m.ParallaxQuote })),
+  { ssr: false }
+);
+const Testimonials = dynamic(
+  () => import("@/components/im/Testimonials").then((m) => ({ default: m.Testimonials })),
+  { ssr: false }
+);
+const BeforeAfterSlider = dynamic(
+  () => import("@/components/im/BeforeAfterSlider").then((m) => ({ default: m.BeforeAfterSlider })),
+  { ssr: false }
+);
+const TrackRecord = dynamic(
+  () => import("@/components/im/TrackRecord").then((m) => ({ default: m.TrackRecord })),
+  { ssr: false }
+);
+const AwardsRecognition = dynamic(
+  () => import("@/components/im/AwardsRecognition").then((m) => ({ default: m.AwardsRecognition })),
+  { ssr: false }
+);
+const CaseResults = dynamic(
+  () => import("@/components/im/CaseResults").then((m) => ({ default: m.CaseResults })),
+  { ssr: false }
+);
+const MilestonesTimeline = dynamic(
+  () => import("@/components/im/MilestonesTimeline").then((m) => ({ default: m.MilestonesTimeline })),
+  { ssr: false }
+);
+const LegalInsights = dynamic(
+  () => import("@/components/im/LegalInsights").then((m) => ({ default: m.LegalInsights })),
+  { ssr: false }
+);
+const LegalResources = dynamic(
+  () => import("@/components/im/LegalResources").then((m) => ({ default: m.LegalResources })),
+  { ssr: false }
+);
+const FeesAndBilling = dynamic(
+  () => import("@/components/im/FeesAndBilling").then((m) => ({ default: m.FeesAndBilling })),
+  { ssr: false }
+);
+const FAQSection = dynamic(
+  () => import("@/components/im/FAQSection").then((m) => ({ default: m.FAQSection })),
+  { ssr: false }
+);
+const ContactForm = dynamic(
+  () => import("@/components/im/ContactForm").then((m) => ({ default: m.ContactForm })),
+  { ssr: false }
+);
+const OfficeHours = dynamic(
+  () => import("@/components/im/OfficeHours").then((m) => ({ default: m.OfficeHours })),
+  { ssr: false }
+);
+const LocationMap = dynamic(
+  () => import("@/components/im/LocationMap").then((m) => ({ default: m.LocationMap })),
+  { ssr: false }
+);
+const NewsletterSection = dynamic(
+  () => import("@/components/im/NewsletterSection").then((m) => ({ default: m.NewsletterSection })),
+  { ssr: false }
+);
 
-import { ClientMarquee } from "@/components/im/ClientMarquee";
-import { AwardsRecognition } from "@/components/im/AwardsRecognition";
-import { CaseResults } from "@/components/im/CaseResults";
-import { MilestonesTimeline } from "@/components/im/MilestonesTimeline";
-import { LegalResources } from "@/components/im/LegalResources";
-
-import { FeesAndBilling } from "@/components/im/FeesAndBilling";
-import { PracticeAreaOnboarding } from "@/components/im/PracticeAreaOnboarding";
-import { OfficeHours } from "@/components/im/OfficeHours";
-
-import { BeforeAfterSlider } from "@/components/im/BeforeAfterSlider";
-
-
-import { ComplianceModals, useComplianceModals } from "@/components/im/ComplianceModals";
-
+// ── Floating UI: lazy-loaded (non-critical) ──
+const Footer = dynamic(
+  () => import("@/components/im/Footer").then((m) => ({ default: m.Footer })),
+  { ssr: false }
+);
+const BailFloatingIcon = dynamic(
+  () => import("@/components/im/BailFloatingIcon").then((m) => ({ default: m.BailFloatingIcon })),
+  { ssr: false }
+);
+const WhatsAppButton = dynamic(
+  () => import("@/components/im/WhatsAppButton").then((m) => ({ default: m.WhatsAppButton })),
+  { ssr: false }
+);
+const ClientIntakeOnboarding = dynamic(
+  () => import("@/components/im/ClientIntakeOnboarding").then((m) => ({ default: m.ClientIntakeOnboarding })),
+  { ssr: false }
+);
 export default function Home() {
   const { openModal, open, close } = useComplianceModals();
   const [activePracticeArea, setActivePracticeArea] = useState<string | null>(null);
@@ -83,108 +160,67 @@ export default function Home() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            {/* Hero Section */}
+            {/* ── Above the fold (eagerly loaded) ── */}
             <section id="home">
               <Hero />
             </section>
 
-            {/* Welcome Message from Director */}
             <WelcomeSection />
-
-            {/* Stats Bar */}
             <StatsBar />
-
-            {/* Trust & Certifications */}
             <TrustBadges />
 
-            {/* Client Marquee */}
+            {/* ── Below the fold (lazy loaded) ── */}
             <ClientMarquee />
 
-            {/* About / The Firm Section */}
             <section id="about">
               <TheFirm />
             </section>
 
-            {/* Services Section */}
             <section id="services">
               <ServicesGrid onOpenPracticeArea={handleNavigatePracticeArea} />
             </section>
 
-            {/* Practice Area — Interactive Onboarding Assessment */}
             <PracticeAreaOnboarding />
-
-            {/* Our Process */}
             <OurProcess />
-
-            {/* 24/7 Emergency CTA */}
             <EmergencyCTA />
-
-            {/* Founder Spotlight */}
             <Founder />
 
-            {/* Team Section */}
             <section id="team">
               <TeamSection />
             </section>
 
-            {/* Vacation Programme */}
             <VacationProgramme />
-
-            {/* Parallax Quote */}
             <ParallaxQuote />
 
-            {/* Testimonials Section */}
             <section id="testimonials">
               <Testimonials />
             </section>
 
-            {/* Before/After Results Slider */}
             <BeforeAfterSlider />
-
-            {/* Track Record */}
             <TrackRecord />
-
-            {/* Awards & Recognition */}
             <AwardsRecognition />
-
-            {/* Case Results */}
             <CaseResults />
-
-            {/* Milestones Timeline */}
             <MilestonesTimeline />
-
-            {/* Legal Insights */}
             <LegalInsights />
-
-            {/* Legal Resources */}
             <LegalResources />
-
-            {/* Fees & Billing */}
             <FeesAndBilling />
 
-            {/* FAQ Section */}
             <section id="faq">
               <FAQSection />
             </section>
 
-            {/* Contact Section */}
             <section id="contact">
               <ContactForm />
             </section>
 
-            {/* Office Hours */}
             <OfficeHours />
-
-            {/* Location & Map */}
             <LocationMap />
-
-            {/* Newsletter */}
             <NewsletterSection />
           </motion.main>
         )}
       </AnimatePresence>
 
-      {/* Footer — with compliance modal triggers */}
+      {/* Footer */}
       <Footer onOpenModal={open} />
 
       {/* Floating Action Buttons */}

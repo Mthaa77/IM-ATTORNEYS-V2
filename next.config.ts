@@ -5,7 +5,9 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  reactStrictMode: false,
+  reactStrictMode: true,
+  poweredByHeader: false,
+  compress: true,
   images: {
     remotePatterns: [
       {
@@ -13,6 +15,7 @@ const nextConfig: NextConfig = {
         hostname: 'img1.wsimg.com',
       },
     ],
+    formats: ['image/avif', 'image/webp'],
   },
 };
 
