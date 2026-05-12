@@ -64,7 +64,7 @@ export default function Home() {
     <BannerProvider>
       <LoadingScreen />
       <OnboardingBanner />
-      <Navigation />
+      <Navigation activePracticeArea={activePracticeArea} onGoHome={handleBackToHome} />
 
       <AnimatePresence mode="wait">
         {activePracticeArea && (

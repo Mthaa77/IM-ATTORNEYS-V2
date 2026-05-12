@@ -17,7 +17,12 @@ const navLinks = [
 
 const sectionIds = navLinks.map((link) => link.href.replace("#", ""));
 
-export function Navigation() {
+interface NavigationProps {
+  activePracticeArea?: string | null;
+  onGoHome?: () => void;
+}
+
+export function Navigation({ activePracticeArea, onGoHome }: NavigationProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -76,9 +81,31 @@ export function Navigation() {
 
   const handleNavClick = (href: string) => {
     setIsMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+    if (activePracticeArea && onGoHome) {
+      onGoHome();
+      const targetId = href.replace("#", "");
+      setTimeout(() => {
+        const el = document.getElementById(targetId);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 350);
+    } else {
+      const el = document.querySelector(href);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (activePracticeArea && onGoHome) {
+      setIsMobileOpen(false);
+      onGoHome();
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 350);
+    } else {
+      handleNavClick("#home");
     }
   };
 
@@ -110,10 +137,7 @@ export function Navigation() {
             {/* Logo */}
             <a
               href="#home"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick("#home");
-              }}
+              onClick={handleLogoClick}
               className="flex items-center gap-3"
             >
               <div className="w-10 h-10 rounded-full border-2 border-brand-gold flex items-center justify-center">
