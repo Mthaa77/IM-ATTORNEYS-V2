@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { ArrowRight, Shield, Scale, Clock, Award, Star } from "lucide-react";
+import { ArrowRight, Shield, Scale, Clock, Award, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { ScrollReveal } from "@/components/im/ScrollReveal";
 
 /* ------------------------------------------------------------------ */
@@ -28,39 +28,70 @@ const lineReveal = {
 };
 
 /* ------------------------------------------------------------------ */
-/*  Background slides data                                             */
+/*  Ultra Premium Background Slides                                    */
 /* ------------------------------------------------------------------ */
 
 const heroSlides = [
   {
-    src: "/images/pegasus-menlyn-maine.jpg",
-    alt: "Pegasus Building, Menlyn Maine Precinct — Home of IM Attorneys Inc",
-    kenBurns: { initial: { scale: 1.0, x: 0 }, animate: { scale: 1.12, x: 20 } },
+    src: "/images/hero-slide-brand-logo.jpg",
+    alt: "IM Attorneys Inc — Premium Legal Brand Identity",
+    caption: "Prestige Legal Excellence",
+    subcaption: "Ingrid Mtsweni Attorneys Incorporated",
+    kenBurns: { initial: { scale: 1.0, x: 0, y: 0 }, animate: { scale: 1.06, x: 0, y: -8 } },
+    overlayOpacity: 0.92,
   },
   {
-    src: "/images/office-building-exterior.jpg",
-    alt: "IM Attorneys Office Exterior — Professional Legal Practice",
-    kenBurns: { initial: { scale: 1.08, x: 0 }, animate: { scale: 1.16, x: -15 } },
+    src: "/images/hero-slide-attorney-client.jpg",
+    alt: "Attorney-Client Consultation — Professional Legal Meeting",
+    caption: "Trusted Legal Counsel",
+    subcaption: "Dedicated to your case, every step of the way",
+    kenBurns: { initial: { scale: 1.0, x: -20, y: 0 }, animate: { scale: 1.15, x: 20, y: -5 } },
+    overlayOpacity: 0.72,
   },
   {
-    src: "/images/parallax-city.png",
-    alt: "Pretoria City Skyline — Legal Capital of South Africa",
-    kenBurns: { initial: { scale: 1.04, x: -10 }, animate: { scale: 1.14, x: 10 } },
+    src: "/images/hero-slide-office-modern.jpg",
+    alt: "IM Attorneys Modern Office — Contemporary Legal Workspace",
+    caption: "Modern Legal Practice",
+    subcaption: "State-of-the-art facilities in Menlyn Maine, Pretoria",
+    kenBurns: { initial: { scale: 1.05, x: 0, y: 10 }, animate: { scale: 1.18, x: -10, y: -8 } },
+    overlayOpacity: 0.70,
   },
   {
-    src: "/images/team-panoramic.jpg",
-    alt: "Our Dedicated Legal Team — Experts in South African Law",
-    kenBurns: { initial: { scale: 1.06, x: 15 }, animate: { scale: 1.18, x: -10 } },
+    src: "/images/hero-slide-collab-desk.jpg",
+    alt: "Legal Team Collaboration — Strategic Case Discussion",
+    caption: "Strategic Collaboration",
+    subcaption: "Collective expertise for complex legal challenges",
+    kenBurns: { initial: { scale: 1.04, x: 10, y: 0 }, animate: { scale: 1.14, x: -15, y: 5 } },
+    overlayOpacity: 0.72,
   },
   {
-    src: "/images/hero-building.png",
-    alt: "Premium Legal Architecture — IM Attorneys",
-    kenBurns: { initial: { scale: 1.02, x: -5 }, animate: { scale: 1.10, x: 15 } },
+    src: "/images/hero-slide-team-meeting.jpg",
+    alt: "IM Attorneys Team Meeting — Collaborative Legal Strategy",
+    caption: "Team Excellence",
+    subcaption: "Award-winning attorneys working for you",
+    kenBurns: { initial: { scale: 1.06, x: -15, y: -5 }, animate: { scale: 1.20, x: 10, y: 8 } },
+    overlayOpacity: 0.72,
+  },
+  {
+    src: "/images/hero-slide-brand-portfolio.jpg",
+    alt: "IM Attorneys Branded Portfolio — Professional Legal Identity",
+    caption: "Boutique Law Firm",
+    subcaption: "BBBEE Level 1 — Empowering through legal excellence",
+    kenBurns: { initial: { scale: 1.02, x: 5, y: 5 }, animate: { scale: 1.10, x: -8, y: -5 } },
+    overlayOpacity: 0.80,
+  },
+  {
+    src: "/images/hero-slide-attorney-work.jpg",
+    alt: "Senior Attorney at Work — Meticulous Case Preparation",
+    caption: "Meticulous Preparation",
+    subcaption: "Every case receives our undivided attention",
+    kenBurns: { initial: { scale: 1.04, x: -8, y: 0 }, animate: { scale: 1.12, x: 12, y: -6 } },
+    overlayOpacity: 0.74,
   },
 ];
 
-const SLIDE_INTERVAL = 7000; // 7 seconds
-const TRANSITION_DURATION = 1.2; // 1.2s crossfade
+const SLIDE_INTERVAL = 8000; // 8 seconds
+const TRANSITION_DURATION = 1.4; // 1.4s cinematic crossfade
 
 /* ------------------------------------------------------------------ */
 /*  Trust items                                                        */
@@ -74,14 +105,78 @@ const trustItems = [
 ];
 
 /* ------------------------------------------------------------------ */
+/*  Slide Counter (01/07 format)                                       */
+/* ------------------------------------------------------------------ */
+
+function SlideCounter({ current, total }: { current: number; total: number }) {
+  const displayNum = String(current + 1).padStart(2, "0");
+  const displayTotal = String(total).padStart(2, "0");
+
+  return (
+    <div className="flex items-center gap-2 font-body">
+      <motion.span
+        key={displayNum}
+        initial={{ y: 8, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -8, opacity: 0 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        className="text-lg font-bold text-white/90 tracking-wider tabular-nums"
+      >
+        {displayNum}
+      </motion.span>
+      <span className="text-xs text-brand-gold/40">/</span>
+      <span className="text-sm text-white/40 tracking-wider">{displayTotal}</span>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Cinematic Progress Bar (8s animated fill)                          */
+/* ------------------------------------------------------------------ */
+
+function CinematicProgress({
+  active,
+  onDone,
+  index,
+}: {
+  active: boolean;
+  onDone: () => void;
+  index: number;
+}) {
+  useEffect(() => {
+    if (!active) return;
+    const timeout = setTimeout(onDone, SLIDE_INTERVAL);
+    return () => clearTimeout(timeout);
+  }, [active, onDone]);
+
+  return (
+    <div className="relative w-full h-[2px] rounded-full overflow-hidden bg-white/10">
+      <motion.div
+        className="absolute inset-y-0 left-0 rounded-full"
+        style={{
+          background: "linear-gradient(90deg, #C6A84B 0%, #E4D49A 50%, #C6A84B 100%)",
+          boxShadow: "0 0 8px rgba(198,168,75,0.4)",
+        }}
+        initial={{ width: "0%" }}
+        animate={active ? { width: "100%" } : { width: "0%" }}
+        transition={active ? { duration: SLIDE_INTERVAL / 1000, ease: "linear" } : { duration: 0.2 }}
+        key={`progress-${index}`}
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Hero Component                                                     */
 /* ------------------------------------------------------------------ */
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Parallax: background image scrolls at 0.3× speed
+  // Parallax: background image scrolls at 0.3x speed
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
@@ -90,22 +185,45 @@ export function Hero() {
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.6], [0, 0.4]);
 
   // Auto-advance carousel
-  useEffect(() => {
-    const timer = setInterval(() => {
+  const advanceSlide = useCallback(() => {
+    if (isPaused || isTransitioning) return;
+    setIsTransitioning(true);
+    setTimeout(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, SLIDE_INTERVAL);
-    return () => clearInterval(timer);
-  }, []);
+      setIsTransitioning(false);
+    }, 200);
+  }, [isPaused, isTransitioning]);
 
-  const goToSlide = useCallback((index: number) => {
-    setCurrentSlide(index);
-  }, []);
+  const goToSlide = useCallback(
+    (index: number) => {
+      if (isTransitioning || index === currentSlide) return;
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentSlide(index);
+        setIsTransitioning(false);
+      }, 200);
+    },
+    [isTransitioning, currentSlide]
+  );
+
+  const goNext = useCallback(() => {
+    goToSlide((currentSlide + 1) % heroSlides.length);
+  }, [currentSlide, goToSlide]);
+
+  const goPrev = useCallback(() => {
+    goToSlide((currentSlide - 1 + heroSlides.length) % heroSlides.length);
+  }, [currentSlide, goToSlide]);
+
+  const slide = heroSlides[currentSlide];
+  const isFirstSlide = currentSlide === 0;
 
   return (
     <section
       id="home"
       ref={sectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden wave-divider-bottom"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
     >
       {/* ====== Background Image Carousel ====== */}
       <motion.div className="absolute inset-0 z-0" style={{ y: bgY }}>
@@ -118,72 +236,97 @@ export function Hero() {
             exit={{ opacity: 0 }}
             transition={{ duration: TRANSITION_DURATION, ease: "easeInOut" }}
           >
+            {/* Ken Burns zoom/pan wrapper */}
             <motion.div
               className="absolute inset-0"
-              initial={heroSlides[currentSlide].kenBurns.initial}
-              animate={heroSlides[currentSlide].kenBurns.animate}
+              initial={slide.kenBurns.initial}
+              animate={slide.kenBurns.animate}
               transition={{
-                duration: SLIDE_INTERVAL + TRANSITION_DURATION,
+                duration: SLIDE_INTERVAL / 1000 + TRANSITION_DURATION,
                 ease: "linear",
               }}
             >
               <Image
-                src={heroSlides[currentSlide].src}
-                alt={heroSlides[currentSlide].alt}
+                src={slide.src}
+                alt={slide.alt}
                 fill
                 className="object-cover object-center"
                 priority={currentSlide === 0}
+                sizes="100vw"
+                quality={90}
               />
             </motion.div>
           </motion.div>
         </AnimatePresence>
       </motion.div>
 
-      {/* ====== Cinematic Color Grading Overlays ====== */}
-      {/* Base dark navy gradient from bottom */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-t from-[#0D1B2A] via-[#0D1B2A]/80 to-transparent" />
+      {/* ====== Ultra Premium Cinematic Overlays ====== */}
+      {/* Dynamic per-slide dark overlay */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`overlay-opacity-${currentSlide}`}
+          className="absolute inset-0 z-[1]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: TRANSITION_DURATION, ease: "easeInOut" }}
+          style={{ backgroundColor: `rgba(13, 27, 42, ${slide.overlayOpacity})` }}
+        />
+      </AnimatePresence>
+
+      {/* Navy gradient from bottom (always present) */}
+      <div className="absolute inset-0 z-[2] bg-gradient-to-t from-[#0D1B2A] via-[#0D1B2A]/60 to-transparent" />
       {/* Gold accent at edges */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-br from-[#C6A84B]/10 via-transparent to-[#C6A84B]/5" />
-      {/* Vignette */}
-      <div className="absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_40%,#0D1B2A_100%)]" />
+      <div className="absolute inset-0 z-[2] bg-gradient-to-br from-[#C6A84B]/10 via-transparent to-[#C6A84B]/5" />
+      {/* Cinematic vignette */}
+      <div className="absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_center,transparent_35%,#0D1B2A_100%)]" />
+      {/* Letterbox bars for cinematic feel */}
+      <div className="absolute top-0 left-0 right-0 h-[3vh] bg-[#0D1B2A] z-[3] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-[5vh] bg-[#0D1B2A] z-[3] pointer-events-none" />
       {/* Scroll-based darkening */}
       <motion.div
-        className="absolute inset-0 z-[1] bg-[#0D1B2A]"
+        className="absolute inset-0 z-[2] bg-[#0D1B2A]"
         style={{ opacity: overlayOpacity }}
+      />
+
+      {/* ====== Animated Gold Scan Line ====== */}
+      <motion.div
+        className="absolute left-0 right-0 h-px z-[3] pointer-events-none"
+        style={{
+          background: "linear-gradient(90deg, transparent 0%, rgba(198,168,75,0.15) 20%, rgba(198,168,75,0.3) 50%, rgba(198,168,75,0.15) 80%, transparent 100%)",
+        }}
+        animate={{ top: ["0%", "100%"] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
       />
 
       {/* ====== Animated Ambient Gold Orbs ====== */}
       <motion.div
-        className="absolute top-[15%] left-[10%] w-[420px] h-[420px] rounded-full z-[2] pointer-events-none"
+        className="absolute top-[15%] left-[10%] w-[420px] h-[420px] rounded-full z-[4] pointer-events-none"
         style={{
-          background:
-            "radial-gradient(circle, rgba(198,168,75,0.12) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(198,168,75,0.12) 0%, transparent 70%)",
         }}
         animate={{ x: [0, 30, -20, 0], y: [0, -20, 15, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute bottom-[20%] right-[8%] w-[360px] h-[360px] rounded-full z-[2] pointer-events-none"
+        className="absolute bottom-[20%] right-[8%] w-[360px] h-[360px] rounded-full z-[4] pointer-events-none"
         style={{
-          background:
-            "radial-gradient(circle, rgba(228,212,154,0.08) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(228,212,154,0.08) 0%, transparent 70%)",
         }}
         animate={{ x: [0, -25, 20, 0], y: [0, 18, -12, 0] }}
         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute top-[50%] left-[55%] w-[280px] h-[280px] rounded-full z-[2] pointer-events-none"
+        className="absolute top-[50%] left-[55%] w-[280px] h-[280px] rounded-full z-[4] pointer-events-none"
         style={{
-          background:
-            "radial-gradient(circle, rgba(198,168,75,0.06) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(198,168,75,0.06) 0%, transparent 70%)",
         }}
         animate={{ x: [0, 15, -30, 0], y: [0, -30, 10, 0] }}
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
 
       {/* ====== Decorative Gold Corner Lines ====== */}
-      {/* Top-left */}
-      <div className="absolute top-8 left-8 z-[3] hidden lg:block">
+      <div className="absolute top-8 left-8 z-[5] hidden lg:block">
         <motion.div
           className="w-24 h-px bg-brand-gold/30"
           variants={lineReveal}
@@ -201,8 +344,7 @@ export function Hero() {
           style={{ originX: 0, scaleY: 1 }}
         />
       </div>
-      {/* Bottom-right */}
-      <div className="absolute bottom-16 right-8 z-[3] hidden lg:block">
+      <div className="absolute bottom-16 right-8 z-[5] hidden lg:block">
         <motion.div
           className="w-24 h-px bg-brand-gold/30"
           variants={lineReveal}
@@ -219,14 +361,13 @@ export function Hero() {
         />
       </div>
 
-      {/* ====== Floating "Est. 2023" Badge ====== */}
+      {/* ====== Floating &quot;Est. 2023&quot; Badge ====== */}
       <motion.div
-        className="absolute top-28 right-8 z-[4] hidden lg:flex flex-col items-center gap-2"
+        className="absolute top-28 right-8 z-[6] hidden lg:flex flex-col items-center gap-2"
         animate={{ y: [0, -8, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       >
         <div className="relative">
-          {/* Pulsing gold ring */}
           <motion.div
             className="absolute inset-[-6px] rounded-full border border-brand-gold/40"
             animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.1, 0.4] }}
@@ -242,7 +383,7 @@ export function Hero() {
       </motion.div>
 
       {/* ====== Main Content ====== */}
-      <div className="relative z-[5] w-full max-w-5xl mx-auto px-6 pt-28 pb-32 lg:pt-32 lg:pb-40 text-center">
+      <div className="relative z-[7] w-full max-w-5xl mx-auto px-6 pt-28 pb-36 lg:pt-32 lg:pb-44 text-center">
         {/* Gold micro-label */}
         <motion.p
           className="font-body text-[11px] sm:text-xs uppercase tracking-[0.3em] text-brand-gold/80 mb-5"
@@ -308,20 +449,16 @@ export function Hero() {
         >
           {trustItems.map((item, i) => (
             <div key={item.label} className="flex items-center gap-3">
-              {i > 0 && (
-                <span className="text-brand-gold/40 text-[8px]">&#9670;</span>
-              )}
+              {i > 0 && <span className="text-brand-gold/40 text-[8px]">&#9670;</span>}
               <div className="flex items-center gap-2">
                 <item.icon className="w-4 h-4 text-brand-gold/70" />
-                <span className="font-body text-sm text-white/70">
-                  {item.label}
-                </span>
+                <span className="font-body text-sm text-white/70">{item.label}</span>
               </div>
             </div>
           ))}
         </motion.div>
 
-        {/* Mobile trust items (2 only) */}
+        {/* Mobile trust items */}
         <motion.div
           className="flex md:hidden items-center justify-center gap-4 mb-8"
           variants={fadeUp}
@@ -331,13 +468,9 @@ export function Hero() {
         >
           {trustItems.slice(0, 2).map((item, i) => (
             <div key={item.label} className="flex items-center gap-2">
-              {i > 0 && (
-                <span className="text-brand-gold/40 text-[8px]">&#9670;</span>
-              )}
+              {i > 0 && <span className="text-brand-gold/40 text-[8px]">&#9670;</span>}
               <item.icon className="w-3.5 h-3.5 text-brand-gold/70" />
-              <span className="font-body text-xs text-white/70">
-                {item.label}
-              </span>
+              <span className="font-body text-xs text-white/70">{item.label}</span>
             </div>
           ))}
         </motion.div>
@@ -369,47 +502,65 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* ====== Carousel Progress Dots ====== */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-[6] flex items-center gap-2.5">
-        {heroSlides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className="relative flex items-center justify-center w-8 h-8 cursor-pointer"
-            aria-label={`Go to slide ${index + 1}`}
-          >
-            {/* Background dot */}
-            <span
-              className="absolute inset-0 flex items-center justify-center"
+      {/* ====== Bottom Controls Bar ====== */}
+      <div className="absolute bottom-6 left-0 right-0 z-[8] px-6 lg:px-12">
+        <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
+          {/* Left: Slide Counter */}
+          <div className="hidden sm:flex items-center gap-4">
+            <SlideCounter current={currentSlide} total={heroSlides.length} />
+            <div className="w-16 sm:w-24">
+              <CinematicProgress
+                active={!isPaused && !isTransitioning}
+                onDone={advanceSlide}
+                index={currentSlide}
+              />
+            </div>
+          </div>
+
+          {/* Center: Dot Navigation */}
+          <div className="flex items-center gap-2">
+            {heroSlides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className="relative cursor-pointer group"
+                aria-label={`Go to slide ${index + 1}`}
+              >
+                <span
+                  className="block rounded-full transition-all duration-500"
+                  style={{
+                    width: index === currentSlide ? 24 : 8,
+                    height: 8,
+                    backgroundColor:
+                      index === currentSlide ? "#C6A84B" : "rgba(198, 168, 75, 0.25)",
+                    boxShadow:
+                      index === currentSlide
+                        ? "0 0 12px rgba(198,168,75,0.4)"
+                        : "none",
+                  }}
+                />
+              </button>
+            ))}
+          </div>
+
+          {/* Right: Prev / Next Arrows */}
+          <div className="hidden sm:flex items-center gap-1">
+            <button
+              onClick={goPrev}
+              className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-brand-gold/10 border border-brand-gold/15 hover:border-brand-gold/30"
+              aria-label="Previous slide"
             >
-              <span
-                className={`rounded-full transition-all duration-500 ${
-                  index === currentSlide
-                    ? "w-2.5 h-2.5"
-                    : "w-1.5 h-1.5 opacity-40"
-                }`}
-                style={{
-                  backgroundColor: "#C6A84B",
-                }}
-              />
-            </span>
-            {/* Animated fill ring on active dot */}
-            {index === currentSlide && (
-              <motion.span
-                className="absolute rounded-full"
-                style={{
-                  width: 28,
-                  height: 28,
-                  border: "1.5px solid rgba(198,168,75,0.5)",
-                }}
-                initial={{ scale: 0.5, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.5, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-              />
-            )}
-          </button>
-        ))}
+              <ChevronLeft className="w-4 h-4 text-white/60 group-hover:text-brand-gold" />
+            </button>
+            <button
+              onClick={goNext}
+              className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 hover:bg-brand-gold/10 border border-brand-gold/15 hover:border-brand-gold/30"
+              aria-label="Next slide"
+            >
+              <ChevronRight className="w-4 h-4 text-white/60 group-hover:text-brand-gold" />
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* ====== Scroll Indicator ====== */}
@@ -428,11 +579,7 @@ export function Hero() {
               <motion.div
                 className="w-1 h-1.5 rounded-full bg-brand-gold/70"
                 animate={{ y: [0, 10, 0] }}
-                transition={{
-                  duration: 1.8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+                transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
               />
             </motion.div>
           </div>
