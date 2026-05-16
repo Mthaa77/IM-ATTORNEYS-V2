@@ -107,6 +107,18 @@ const NewsletterSection = dynamic(
   () => import("@/components/im/NewsletterSection").then((m) => ({ default: m.NewsletterSection })),
   { ssr: false }
 );
+const CaseValueEstimator = dynamic(
+  () => import("@/components/im/CaseValueEstimator").then((m) => ({ default: m.CaseValueEstimator })),
+  { ssr: false }
+);
+const VIPConsultationBooking = dynamic(
+  () => import("@/components/im/VIPConsultationBooking").then((m) => ({ default: m.VIPConsultationBooking })),
+  { ssr: false }
+);
+const LegalRiskAssessment = dynamic(
+  () => import("@/components/im/LegalRiskAssessment").then((m) => ({ default: m.LegalRiskAssessment })),
+  { ssr: false }
+);
 
 // ── Floating UI: lazy-loaded (non-critical) ──
 const Footer = dynamic(
@@ -180,8 +192,10 @@ export default function Home() {
               <ServicesGrid onOpenPracticeArea={handleNavigatePracticeArea} />
             </section>
 
+            <CaseValueEstimator />
             <PracticeAreaOnboarding />
             <OurProcess />
+            <VIPConsultationBooking />
             <EmergencyCTA />
             <Founder />
 
@@ -204,6 +218,7 @@ export default function Home() {
             <LegalInsights />
             <LegalResources />
             <FeesAndBilling />
+            <LegalRiskAssessment />
 
             <section id="faq">
               <FAQSection />

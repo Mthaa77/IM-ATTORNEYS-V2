@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { ArrowRight, Shield, Scale, Clock, Award, Star } from "lucide-react";
 import { ScrollReveal } from "@/components/im/ScrollReveal";
 
@@ -28,6 +28,41 @@ const lineReveal = {
 };
 
 /* ------------------------------------------------------------------ */
+/*  Background slides data                                             */
+/* ------------------------------------------------------------------ */
+
+const heroSlides = [
+  {
+    src: "/images/pegasus-menlyn-maine.jpg",
+    alt: "Pegasus Building, Menlyn Maine Precinct — Home of IM Attorneys Inc",
+    kenBurns: { initial: { scale: 1.0, x: 0 }, animate: { scale: 1.12, x: 20 } },
+  },
+  {
+    src: "/images/office-building-exterior.jpg",
+    alt: "IM Attorneys Office Exterior — Professional Legal Practice",
+    kenBurns: { initial: { scale: 1.08, x: 0 }, animate: { scale: 1.16, x: -15 } },
+  },
+  {
+    src: "/images/parallax-city.png",
+    alt: "Pretoria City Skyline — Legal Capital of South Africa",
+    kenBurns: { initial: { scale: 1.04, x: -10 }, animate: { scale: 1.14, x: 10 } },
+  },
+  {
+    src: "/images/team-panoramic.jpg",
+    alt: "Our Dedicated Legal Team — Experts in South African Law",
+    kenBurns: { initial: { scale: 1.06, x: 15 }, animate: { scale: 1.18, x: -10 } },
+  },
+  {
+    src: "/images/hero-building.png",
+    alt: "Premium Legal Architecture — IM Attorneys",
+    kenBurns: { initial: { scale: 1.02, x: -5 }, animate: { scale: 1.10, x: 15 } },
+  },
+];
+
+const SLIDE_INTERVAL = 7000; // 7 seconds
+const TRANSITION_DURATION = 1.2; // 1.2s crossfade
+
+/* ------------------------------------------------------------------ */
 /*  Trust items                                                        */
 /* ------------------------------------------------------------------ */
 
@@ -44,6 +79,7 @@ const trustItems = [
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   // Parallax: background image scrolls at 0.3× speed
   const { scrollYProgress } = useScroll({
@@ -53,21 +89,54 @@ export function Hero() {
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.6], [0, 0.4]);
 
+  // Auto-advance carousel
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, SLIDE_INTERVAL);
+    return () => clearInterval(timer);
+  }, []);
+
+  const goToSlide = useCallback((index: number) => {
+    setCurrentSlide(index);
+  }, []);
+
   return (
     <section
       id="home"
       ref={sectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden wave-divider-bottom"
     >
-      {/* ====== Full-screen Background Image ====== */}
+      {/* ====== Background Image Carousel ====== */}
       <motion.div className="absolute inset-0 z-0" style={{ y: bgY }}>
-        <Image
-          src="/images/pegasus-menlyn-maine.jpg"
-          alt="Pegasus Building, Menlyn Maine Precinct — Home of IM Attorneys Inc"
-          fill
-          className="object-cover object-center scale-110"
-          priority
-        />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            className="absolute inset-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: TRANSITION_DURATION, ease: "easeInOut" }}
+          >
+            <motion.div
+              className="absolute inset-0"
+              initial={heroSlides[currentSlide].kenBurns.initial}
+              animate={heroSlides[currentSlide].kenBurns.animate}
+              transition={{
+                duration: SLIDE_INTERVAL + TRANSITION_DURATION,
+                ease: "linear",
+              }}
+            >
+              <Image
+                src={heroSlides[currentSlide].src}
+                alt={heroSlides[currentSlide].alt}
+                fill
+                className="object-cover object-center"
+                priority={currentSlide === 0}
+              />
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
       </motion.div>
 
       {/* ====== Cinematic Color Grading Overlays ====== */}
@@ -281,13 +350,15 @@ export function Hero() {
           animate="visible"
           custom={1.45}
         >
-          <a
+          <motion.a
             href="#contact"
             className="btn-premium inline-flex items-center gap-2 px-7 py-3.5 font-body text-sm rounded-md"
+            animate={{ y: [0, -4, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           >
             Book Free Consultation
             <ArrowRight className="w-4 h-4" />
-          </a>
+          </motion.a>
           <a
             href="#practice-areas"
             className="btn-premium-outline inline-flex items-center gap-2 px-7 py-3.5 font-body text-sm rounded-md"
@@ -296,6 +367,49 @@ export function Hero() {
             Explore Practice Areas
           </a>
         </motion.div>
+      </div>
+
+      {/* ====== Carousel Progress Dots ====== */}
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-[6] flex items-center gap-2.5">
+        {heroSlides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className="relative flex items-center justify-center w-8 h-8 cursor-pointer"
+            aria-label={`Go to slide ${index + 1}`}
+          >
+            {/* Background dot */}
+            <span
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              <span
+                className={`rounded-full transition-all duration-500 ${
+                  index === currentSlide
+                    ? "w-2.5 h-2.5"
+                    : "w-1.5 h-1.5 opacity-40"
+                }`}
+                style={{
+                  backgroundColor: "#C6A84B",
+                }}
+              />
+            </span>
+            {/* Animated fill ring on active dot */}
+            {index === currentSlide && (
+              <motion.span
+                className="absolute rounded-full"
+                style={{
+                  width: 28,
+                  height: 28,
+                  border: "1.5px solid rgba(198,168,75,0.5)",
+                }}
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.5, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              />
+            )}
+          </button>
+        ))}
       </div>
 
       {/* ====== Scroll Indicator ====== */}
