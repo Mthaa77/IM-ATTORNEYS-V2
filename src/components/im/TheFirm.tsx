@@ -119,6 +119,24 @@ export function TheFirm() {
                   responsiveness that only a true boutique practice can deliver.
                 </p>
 
+                {/* Team collaboration image */}
+                <ScrollReveal direction="right" delay={0.5} duration={0.8}>
+                  <div className="relative w-full max-w-lg rounded-sm overflow-hidden shadow-md group my-8">
+                    <div className="aspect-[16/9] relative">
+                      <Image
+                        src="/images/team-collaboration.jpg"
+                        alt="IM Attorneys team collaborating on complex legal matters"
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 1024px) 100vw, 55vw"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/20 via-transparent to-transparent" />
+                    <div className="absolute inset-0 rounded-sm border border-brand-gold/15 pointer-events-none" />
+                  </div>
+                </ScrollReveal>
+
                 {/* CTA Link */}
                 <motion.div
                   className="pt-4"

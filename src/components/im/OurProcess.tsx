@@ -455,6 +455,44 @@ export function OurProcess() {
         </div>
       </div>
 
+      {/* ── Accent Image Strip ── */}
+      <ScrollReveal direction="up" delay={0.2}>
+        <div className="mt-20 md:mt-28 relative max-w-4xl mx-auto">
+          <div className="relative rounded-xl overflow-hidden shadow-lg group">
+            <div className="aspect-[21/9] relative">
+              <div
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                style={{ backgroundImage: "url('/images/hero-slide-collab-desk.jpg')" }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-brand-cream/90 via-brand-cream/50 to-brand-cream/90" />
+              <div className="absolute inset-0 flex items-center justify-center px-8">
+                <div className="text-center max-w-md">
+                  <p className="font-display text-xl sm:text-2xl font-bold text-brand-dark mb-2">
+                    From Consultation to Resolution
+                  </p>
+                  <p className="font-body text-sm text-brand-body leading-relaxed">
+                    Every client&apos;s journey is unique. We adapt our approach to deliver the outcome you deserve.
+                  </p>
+                  <a
+                    href="#contact"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const el = document.querySelector("#contact");
+                      if (el) el.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="inline-flex items-center gap-2 mt-4 font-body text-sm font-semibold text-brand-gold hover:text-brand-dark transition-colors group/link"
+                  >
+                    <span>Start Your Journey</span>
+                    <span className="group-hover/link:translate-x-1 transition-transform">&rarr;</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="absolute inset-0 rounded-xl border border-brand-gold/10 pointer-events-none" />
+          </div>
+        </div>
+      </ScrollReveal>
+
       {/* Keyframe for goldPulseRing */}
       <style jsx>{`
         @keyframes goldPulseRing {

@@ -27,6 +27,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { ScrollReveal, GoldLine } from "@/components/im/ScrollReveal";
+import Image from "next/image";
 
 const contactSchema = z.object({
   fullName: z
@@ -180,6 +181,26 @@ export function ContactForm() {
           {/* Left Side: Contact Info */}
           <ScrollReveal direction="left" className="lg:col-span-2">
             <div className="space-y-8">
+              {/* Office Building Image */}
+              <div className="relative rounded-lg overflow-hidden shadow-lg mb-8 group">
+                <div className="aspect-[16/10] relative">
+                  <Image
+                    src="/images/office-building-exterior.jpg"
+                    alt="IM Attorneys office at Pegasus Building, Menlyn Maine, Pretoria"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2A]/50 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-4 right-4">
+                  <p className="font-body text-xs font-medium text-white/90 tracking-wide">Pegasus Building, Menlyn Maine</p>
+                  <p className="font-body text-[10px] text-white/50 mt-0.5">Pretoria, Gauteng</p>
+                </div>
+                <div className="absolute inset-0 rounded-lg border border-brand-gold/15 pointer-events-none" />
+              </div>
+
               {/* Firm Name */}
               <div>
                 <h3 className="font-display text-2xl font-bold text-brand-dark mb-1">

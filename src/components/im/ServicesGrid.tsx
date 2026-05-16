@@ -15,6 +15,7 @@ import {
   StaggerContainer,
   staggerChildVariants,
 } from "@/components/im/ScrollReveal";
+import Image from "next/image";
 import {
   ServiceDetailModal,
   serviceDetails,
@@ -292,6 +293,21 @@ export function ServicesGrid({ onOpenPracticeArea }: { onOpenPracticeArea?: (slu
       {/* ── Decorative background blobs ── */}
       <div className="blob-morph blob-1 pointer-events-none" />
       <div className="blob-morph blob-2 pointer-events-none" />
+
+      {/* ── Premium Image Accent Strip (Desktop) ── */}
+      <div className="absolute top-0 right-0 w-[35%] h-[280px] lg:h-[340px] overflow-hidden pointer-events-none hidden lg:block z-[1]">
+        <Image
+          src="/images/hero-slide-office-modern.jpg"
+          alt=""
+          fill
+          className="object-cover object-center opacity-[0.08] grayscale"
+          sizes="35vw"
+          loading="lazy"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-l from-transparent via-brand-cream/80 to-brand-cream" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-brand-cream" />
+      </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* ── Section header ── */}

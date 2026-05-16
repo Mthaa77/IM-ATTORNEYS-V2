@@ -486,6 +486,35 @@ export function AwardsRecognition() {
           ))}
         </div>
 
+        {/* ═══════ Visual Accent Image Strip ═══════ */}
+        <ScrollReveal className="mb-10 sm:mb-14">
+          <div className="relative max-w-5xl mx-auto rounded-2xl overflow-hidden group">
+            <div className="aspect-[21/8] relative">
+              <div
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 group-hover:scale-[1.03]"
+                style={{ backgroundImage: "url('/images/attorney-portrait.jpg')" }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#F9F8F5]/95 via-[#F9F8F5]/70 to-[#F9F8F5]/95" />
+              <div className="absolute inset-0 flex items-center justify-center px-6 sm:px-12">
+                <div className="text-center max-w-lg">
+                  <div className="flex items-center justify-center gap-3 mb-4">
+                    <div className="h-px w-12" style={{ background: "linear-gradient(to right, transparent, rgba(198,168,75,0.4))" }} />
+                    <Award className="w-5 h-5" style={{ color: "#C6A84B" }} strokeWidth={1.5} />
+                    <div className="h-px w-12" style={{ background: "linear-gradient(to left, transparent, rgba(198,168,75,0.4))" }} />
+                  </div>
+                  <p className="font-display text-xl sm:text-2xl font-bold" style={{ color: "#0D1B2A" }}>
+                    Recognised for Excellence, Driven by Purpose
+                  </p>
+                  <p className="font-body text-sm mt-2" style={{ color: "rgba(58,74,92,0.65)" }}>
+                    Every accolade is a testament to our unwavering commitment to our clients and the pursuit of justice.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="absolute inset-0 rounded-2xl pointer-events-none" style={{ border: "1px solid rgba(198,168,75,0.12)" }} />
+          </div>
+        </ScrollReveal>
+
         {/* Mobile: show first featured */}
         <div className="md:hidden mb-8">
           <FeaturedAwardCard award={featuredAwards[0]} />
