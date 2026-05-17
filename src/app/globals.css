@@ -95,25 +95,6 @@
   --sidebar-ring: #C6A84B;
 }
 
-.dark {
-  --background: #0A1628;
-  --foreground: #F0EDE8;
-  --card: #12223A;
-  --card-foreground: #F0EDE8;
-  --popover: #12223A;
-  --popover-foreground: #F0EDE8;
-  --primary: #C6A84B;
-  --primary-foreground: #0D1B2A;
-  --secondary: #1A3250;
-  --secondary-foreground: #F0EDE8;
-  --muted: #1A3250;
-  --muted-foreground: #8A9AB0;
-  --accent: #C6A84B;
-  --accent-foreground: #0D1B2A;
-  --border: rgba(198, 168, 75, 0.15);
-  --input: rgba(198, 168, 75, 0.15);
-  --ring: #C6A84B;
-}
 
 html, body {
   margin: 0 !important;
@@ -139,19 +120,6 @@ html, body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-  .dark body {
-    @apply bg-[#0A1628] text-[#F0EDE8];
-  }
-  .dark ::-webkit-scrollbar-track {
-    background: #0A1628;
-  }
-  .dark ::-webkit-scrollbar-thumb {
-    background: #C6A84B;
-  }
-  .dark ::selection {
-    background: rgba(198, 168, 75, 0.3);
-    color: #F0EDE8;
   }
 }
 
@@ -641,49 +609,7 @@ h4[class*="text-gold-gradient"] {
 /* ─────────────────────────────────────────
    10. DARK MODE TYPOGRAPHY VARIANTS
    ───────────────────────────────────────── */
-.dark .heading-section-light {
-  background: linear-gradient(
-    180deg,
-    #F0EDE8 0%,
-    #F0EDE8 30%,
-    #C6A84B 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
 
-.dark .subheading-premium {
-  color: #8A9AB0;
-}
-
-.dark .glass-premium {
-  background: linear-gradient(
-    135deg,
-    rgba(10,22,40,0.85) 0%,
-    rgba(18,34,58,0.7) 50%,
-    rgba(10,22,40,0.85) 100%
-  );
-  border-color: rgba(198,168,75,0.2);
-}
-
-.dark .glass-glossy {
-  background: linear-gradient(
-    135deg,
-    rgba(198,168,75,0.1) 0%,
-    rgba(228,212,154,0.05) 50%,
-    rgba(198,168,75,0.1) 100%
-  );
-  border-color: rgba(198,168,75,0.25);
-}
-
-.dark .glass-card-3d {
-  background: linear-gradient(
-    160deg,
-    rgba(255,255,255,0.06) 0%,
-    rgba(255,255,255,0.02) 100%
-  );
-}
 
 /* Premium focus styles for accessibility */
 :focus-visible {
@@ -966,29 +892,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* 9. Dark mode enhancements */
-.dark .glass-dark {
-  background: rgba(13, 27, 42, 0.95);
-}
 
-.dark ::-webkit-scrollbar-track {
-  background: #0D1B2A;
-}
-
-.dark ::-webkit-scrollbar-thumb {
-  background: #C6A84B;
-  border-radius: 4px;
-}
-
-.dark .card-glass {
-  background: rgba(26, 50, 80, 0.7);
-  border-color: rgba(198, 168, 75, 0.15);
-}
-
-.dark .card-glass:hover {
-  background: rgba(26, 50, 80, 0.9);
-  border-color: rgba(198, 168, 75, 0.3);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-}
 
 /* 10. Feature list with gold checkmarks */
 .feature-list li {
@@ -1588,153 +1492,11 @@ input:focus, textarea:focus, select:focus {
    7. ENHANCED DARK MODE STYLES
    ───────────────────────────────────────── */
 
-.dark .card-gradient-border {
-  background: linear-gradient(
-    135deg,
-    rgba(198, 168, 75, 0.4),
-    rgba(228, 212, 154, 0.1),
-    rgba(198, 168, 75, 0.4),
-    rgba(228, 212, 154, 0.1)
-  );
-  background-size: 300% 300%;
-  animation: gradientBorderShift 6s ease infinite;
-}
-
-.dark .card-gradient-border:hover {
-  box-shadow: 0 0 32px rgba(198, 168, 75, 0.3), 0 0 80px rgba(198, 168, 75, 0.08);
-}
-
-.dark .btn-premium {
-  color: #0D1B2A;
-  background: linear-gradient(160deg, #D4B44A 0%, #E8D98A 35%, #C6A84B 60%, #DABB5E 100%);
-  background-size: 200% 200%;
-  box-shadow:
-    0 1px 2px rgba(0,0,0,0.25),
-    0 4px 8px rgba(198,168,75,0.25),
-    0 8px 20px rgba(198,168,75,0.15),
-    0 0 40px rgba(198,168,75,0.08),
-    inset 0 1px 0 rgba(255,255,255,0.35),
-    inset 0 -3px 0 rgba(0,0,0,0.10);
-}
-
-.dark .btn-premium:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow:
-    0 2px 4px rgba(0,0,0,0.25),
-    0 6px 12px rgba(198,168,75,0.30),
-    0 16px 40px rgba(198,168,75,0.20),
-    0 0 60px rgba(198,168,75,0.10),
-    inset 0 1px 0 rgba(255,255,255,0.40),
-    inset 0 -3px 0 rgba(0,0,0,0.10);
-}
-
-.dark .btn-premium-outline {
-  color: #E4D49A;
-  border-color: rgba(198,168,75,0.5);
-  border-bottom-color: rgba(198,168,75,0.30);
-  border-right-color: rgba(198,168,75,0.35);
-  box-shadow:
-    0 1px 3px rgba(0,0,0,0.15),
-    0 4px 12px rgba(198,168,75,0.08),
-    inset 0 1px 0 rgba(198,168,75,0.10),
-    inset 0 -2px 0 rgba(198,168,75,0.05);
-}
-
-.dark .btn-premium-outline:hover {
-  color: #0D1B2A;
-  background: linear-gradient(160deg, #D4B44A 0%, #E8D98A 35%, #C6A84B 60%, #DABB5E 100%);
-  border-color: #C6A84B;
-  border-bottom-color: #B8962F;
-  border-right-color: #A88528;
-  box-shadow:
-    0 2px 4px rgba(0,0,0,0.20),
-    0 6px 12px rgba(198,168,75,0.25),
-    0 16px 40px rgba(198,168,75,0.15),
-    inset 0 1px 0 rgba(255,255,255,0.35),
-    inset 0 -3px 0 rgba(0,0,0,0.10);
-}
-
-.dark .btn-premium-ghost:hover {
-  color: #E4D49A;
-  background: linear-gradient(180deg, rgba(198,168,75,0.10) 0%, rgba(198,168,75,0.03) 100%);
-  border-color: rgba(198,168,75,0.20);
-  box-shadow:
-    0 2px 8px rgba(198,168,75,0.10),
-    0 4px 16px rgba(198,168,75,0.06),
-    inset 0 1px 0 rgba(198,168,75,0.08);
-}
-
-.dark .btn-premium-dark {
-  background: linear-gradient(160deg, #0A1222 0%, #0D1B2A 50%, #142236 100%);
-  border-color: rgba(198,168,75,0.45);
-  box-shadow:
-    0 1px 2px rgba(0,0,0,0.30),
-    0 4px 8px rgba(0,0,0,0.25),
-    0 8px 20px rgba(198,168,75,0.08),
-    0 0 30px rgba(198,168,75,0.08),
-    inset 0 1px 0 rgba(255,255,255,0.08),
-    inset 0 -2px 0 rgba(0,0,0,0.25);
-}
-
-.dark .btn-premium-dark:hover {
-  border-color: rgba(198,168,75,0.65);
-  box-shadow:
-    0 2px 4px rgba(0,0,0,0.30),
-    0 6px 12px rgba(0,0,0,0.25),
-    0 12px 28px rgba(198,168,75,0.15),
-    0 20px 50px rgba(198,168,75,0.10),
-    0 0 50px rgba(198,168,75,0.08),
-    inset 0 1px 0 rgba(255,255,255,0.12),
-    inset 0 -2px 0 rgba(0,0,0,0.25);
-}
-
-.dark .noise-overlay::after {
-  opacity: 0.03;
-  mix-blend-mode: soft-light;
-}
-
-.dark .wave-divider-top::before {
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='rgba(198,168,75,0.08)' d='M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,0 L0,0 Z'/%3E%3C/svg%3E") no-repeat center top;
-  background-size: cover;
-}
-
-.dark .wave-divider-bottom::after {
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='rgba(198,168,75,0.08)' d='M0,0 C240,40 480,80 720,40 C960,0 1200,80 1440,0 L1440,80 L0,80 Z'/%3E%3C/svg%3E") no-repeat center bottom;
-  background-size: cover;
-}
-
-.dark .bg-animated-gradient {
-  background: linear-gradient(135deg, #0A1628 0%, #12223A 25%, #0A1628 50%, #1A3250 75%, #0A1628 100%);
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
-}
 
 /* ─────────────────────────────────────────
    8. PREMIUM SCROLLBAR ENHANCEMENTS
    ───────────────────────────────────────── */
 
-.dark ::-webkit-scrollbar {
-  width: 10px;
-}
-
-.dark ::-webkit-scrollbar-track {
-  background: #0A1628;
-  border-left: 1px solid rgba(198, 168, 75, 0.06);
-}
-
-.dark ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #C6A84B, rgba(198, 168, 75, 0.5));
-  border-radius: 5px;
-  border: 2px solid #0A1628;
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #E4D49A, #C6A84B);
-}
-
-.dark ::-webkit-scrollbar-corner {
-  background: #0A1628;
-}
 
 /* ─────────────────────────────────────────
    9. SECTION BACKGROUND PATTERNS
@@ -2141,21 +1903,6 @@ input:focus, textarea:focus, select:focus {
    10. DARK MODE VARIANTS (new classes)
    ───────────────────────────────────────── */
 
-.dark .step-number-watermark {
-  color: rgba(198, 168, 75, 0.04);
-}
-
-.dark .card-lift-glow:hover {
-  box-shadow: 0 20px 50px -12px rgba(198, 168, 75, 0.15), 0 8px 20px -8px rgba(0, 0, 0, 0.3);
-}
-
-.dark .image-reveal::after {
-  background: #0A1628;
-}
-
-.dark .border-animated-dashed {
-  border-color: rgba(198, 168, 75, 0.12);
-}
 
 /* ─────────────────────────────────────────
    11. CUSTOM SELECTION STYLING ENHANCEMENT
@@ -2166,10 +1913,6 @@ input:focus, textarea:focus, select:focus {
   color: #0D1B2A;
 }
 
-.dark ::selection {
-  background: rgba(198, 168, 75, 0.35);
-  color: #F0EDE8;
-}
 
 /* ========================================
    PHASE 6 — ADVANCED PREMIUM UTILITIES
@@ -2441,110 +2184,6 @@ input:focus, textarea:focus, select:focus {
    DARK MODE VARIANTS — PHASE 6
    ───────────────────────────────────────── */
 
-.dark .card-3d-tilt {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), 0 2px 6px rgba(0, 0, 0, 0.15);
-}
-
-.dark .card-3d-tilt:hover {
-  transform: rotateX(4deg) rotateY(-4deg) translateZ(10px);
-  box-shadow:
-    0 28px 56px rgba(0, 0, 0, 0.4),
-    0 14px 28px rgba(0, 0, 0, 0.2),
-    -4px 10px 20px rgba(198, 168, 75, 0.08);
-}
-
-.dark .skeleton-shimmer {
-  background: linear-gradient(
-    90deg,
-    #1A3250 0%,
-    #1A3250 37%,
-    rgba(198, 168, 75, 0.1) 50%,
-    #1A3250 63%,
-    #1A3250 100%
-  );
-  background-size: 200% 100%;
-  animation: skeletonShimmer 2s ease-in-out infinite;
-}
-
-.dark .divider-gold-fancy {
-  background: linear-gradient(90deg, transparent, rgba(198, 168, 75, 0.4), transparent);
-}
-
-.dark .divider-gold-fancy::before {
-  background: #E4D49A;
-  box-shadow: 0 0 8px rgba(228, 212, 154, 0.5);
-}
-
-.dark .typing-cursor {
-  background-color: #E4D49A;
-}
-
-.dark .parallax-depth {
-  transform: perspective(800px) translateZ(0);
-}
-
-.dark .parallax-depth:hover {
-  transform: perspective(800px) translateZ(40px) scale(1.06);
-}
-
-.dark .card-glass-elevated {
-  background: rgba(26, 50, 80, 0.75);
-  border-color: rgba(198, 168, 75, 0.15);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.12);
-}
-
-.dark .card-glass-elevated:hover {
-  background: rgba(26, 50, 80, 0.92);
-  border-color: rgba(198, 168, 75, 0.35);
-  box-shadow:
-    0 20px 48px rgba(0, 0, 0, 0.3),
-    0 8px 20px rgba(0, 0, 0, 0.2),
-    0 0 28px rgba(198, 168, 75, 0.1);
-}
-
-.dark .scroll-indicator {
-  color: #E4D49A;
-}
-
-.dark .scroll-indicator::before {
-  border-right-color: #E4D49A;
-  border-bottom-color: #E4D49A;
-}
-
-.dark .text-gradient-overlay {
-  background: linear-gradient(90deg, #F0EDE8 0%, #F0EDE8 30%, #E4D49A 70%, #C6A84B 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.dark .reveal-from-left {
-  opacity: 0;
-  transform: translateX(-40px);
-  clip-path: inset(0 100% 0 0);
-}
-
-.dark .reveal-from-left[data-revealed="true"] {
-  opacity: 1;
-  transform: translateX(0);
-  clip-path: inset(0 0 0 0);
-}
-
-.dark .reveal-from-right {
-  opacity: 0;
-  transform: translateX(40px);
-  clip-path: inset(0 0 0 100%);
-}
-
-.dark .reveal-from-right[data-revealed="true"] {
-  opacity: 1;
-  transform: translateX(0);
-  clip-path: inset(0 0 0 0);
-}
-
-.dark .line-stagger .line-stagger__item {
-  background: linear-gradient(90deg, #E4D49A, #C6A84B);
-}
 
 /* ========================================
    PHASE 7 — PREMIUM COMPONENT UTILITIES
@@ -2605,14 +2244,6 @@ input:focus, textarea:focus, select:focus {
   background: rgba(13, 27, 42, 0.12);
 }
 
-.dark .badge-dark {
-  border-color: rgba(240, 237, 232, 0.2);
-  color: #F0EDE8;
-}
-
-.dark .badge-dark:hover {
-  background: rgba(240, 237, 232, 0.06);
-}
 
 /* ─────────────────────────────────────────
    3. STAT-COUNTER — Animated stat number
@@ -2645,9 +2276,6 @@ input:focus, textarea:focus, select:focus {
   background-clip: text;
 }
 
-.dark .stat-counter {
-  color: #F0EDE8;
-}
 
 /* ─────────────────────────────────────────
    4. ICON-BOX-GOLD — Gold icon container
@@ -2677,21 +2305,6 @@ input:focus, textarea:focus, select:focus {
   box-shadow: 0 4px 16px rgba(198, 168, 75, 0.15);
 }
 
-.dark .icon-box-gold {
-  background: rgba(198, 168, 75, 0.08);
-  border-color: rgba(198, 168, 75, 0.12);
-}
-
-.dark .icon-box-gold svg,
-.dark .icon-box-gold [data-lucide],
-.dark .icon-box-gold .icon {
-  color: #E4D49A;
-}
-
-.dark .icon-box-gold:hover {
-  background: rgba(198, 168, 75, 0.12);
-  box-shadow: 0 4px 16px rgba(198, 168, 75, 0.1);
-}
 
 /* ─────────────────────────────────────────
    5. TEXT-BALANCE — Better typography
@@ -2716,9 +2329,6 @@ input:focus, textarea:focus, select:focus {
   box-shadow: 0 20px 40px rgba(198, 168, 75, 0.15);
 }
 
-.dark .hover-float:hover {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
 
 /* ─────────────────────────────────────────
    7. HOVER-GLOW-GOLD — Gold glow on hover
@@ -2735,11 +2345,6 @@ input:focus, textarea:focus, select:focus {
     0 0 60px rgba(198, 168, 75, 0.1);
 }
 
-.dark .hover-glow-gold:hover {
-  box-shadow:
-    0 0 40px rgba(198, 168, 75, 0.2),
-    0 0 80px rgba(198, 168, 75, 0.06);
-}
 
 /* ─────────────────────────────────────────
    8. BORDER-SHINE — Animated border shine
@@ -2787,18 +2392,6 @@ input:focus, textarea:focus, select:focus {
   }
 }
 
-.dark .border-shine::after {
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    transparent 20%,
-    rgba(228, 212, 154, 0.5) 45%,
-    #E4D49A 50%,
-    rgba(228, 212, 154, 0.5) 55%,
-    transparent 80%,
-    transparent 100%
-  );
-}
 
 /* ─────────────────────────────────────────
    9. PROSE-PREMIUM — Premium typography
@@ -2865,27 +2458,6 @@ input:focus, textarea:focus, select:focus {
   color: #0D1B2A;
 }
 
-.dark .prose-premium {
-  color: #D0D0D0;
-}
-
-.dark .prose-premium h1,
-.dark .prose-premium h2,
-.dark .prose-premium h3,
-.dark .prose-premium h4,
-.dark .prose-premium h5,
-.dark .prose-premium h6 {
-  color: #F0EDE8;
-}
-
-.dark .prose-premium a:hover {
-  color: #E4D49A;
-}
-
-.dark .prose-premium blockquote {
-  border-left-color: rgba(198, 168, 75, 0.5);
-  color: #F0EDE8;
-}
 
 /* ─────────────────────────────────────────
    10. OVERLAY-GRADIENT — Section gradient
@@ -3279,131 +2851,29 @@ input:focus, textarea:focus, select:focus {
    ======================================== */
 
 /* card-spotlight dark */
-.dark .card-spotlight {
-  background: rgba(18, 34, 58, 0.8);
-  border-color: rgba(198, 168, 75, 0.08);
-}
 
-.dark .card-spotlight::before {
-  background: radial-gradient(
-    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(198, 168, 75, 0.12) 0%,
-    transparent 60%
-  );
-}
-
-.dark .card-spotlight:hover {
-  border-color: rgba(198, 168, 75, 0.25);
-  box-shadow: 0 0 30px rgba(198, 168, 75, 0.06);
-}
 
 /* hover-reveal-overlay dark */
-.dark .hover-reveal-overlay::after {
-  color: #0A1628;
-  background: linear-gradient(
-    to top,
-    rgba(198, 168, 75, 0.9) 0%,
-    rgba(228, 212, 154, 0.65) 60%,
-    transparent 100%
-  );
-}
 
 /* glass-reflection dark */
-.dark .glass-reflection {
-  background: rgba(18, 34, 58, 0.6);
-  border-color: rgba(198, 168, 75, 0.08);
-}
 
-.dark .glass-reflection::before {
-  background: linear-gradient(
-    135deg,
-    transparent 30%,
-    rgba(198, 168, 75, 0.08) 45%,
-    rgba(198, 168, 75, 0.02) 50%,
-    transparent 70%
-  );
-}
 
 /* gradient-text-gold dark */
-.dark .gradient-text-gold {
-  background: linear-gradient(
-    90deg,
-    #C6A84B 0%,
-    #E4D49A 25%,
-    #1A3250 50%,
-    #E4D49A 75%,
-    #C6A84B 100%
-  );
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradientTextGold 4s ease-in-out infinite;
-}
 
 /* border-gradient-animated dark */
-.dark .border-gradient-animated {
-  background: #12223A;
-}
 
-.dark .border-gradient-animated::before {
-  background: conic-gradient(
-    from var(--border-angle),
-    #C6A84B 0%,
-    #E4D49A 25%,
-    transparent 50%,
-    #C6A84B 75%,
-    #E4D49A 100%
-  );
-}
 
 /* gold-glow-text dark (brighter for dark bg) */
-.dark .gold-glow-text {
-  color: #E4D49A;
-  text-shadow:
-    0 0 12px rgba(198, 168, 75, 0.5),
-    0 0 40px rgba(198, 168, 75, 0.2);
-}
 
 /* badge-tag dark */
-.dark .badge-tag {
-  color: #D0D0D0;
-  background: rgba(198, 168, 75, 0.08);
-  border-left-color: #C6A84B;
-}
 
 /* shimmer-loading dark */
-.dark .shimmer-loading {
-  background: rgba(198, 168, 75, 0.04);
-}
 
-.dark .shimmer-loading::after {
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(198, 168, 75, 0.06) 25%,
-    rgba(198, 168, 75, 0.12) 50%,
-    rgba(198, 168, 75, 0.06) 75%,
-    transparent 100%
-  );
-  background-size: 200% 100%;
-  animation: shimmerLoading 2s ease-in-out infinite;
-}
 
 /* hover-border-gold dark */
-.dark .hover-border-gold {
-  border-color: transparent;
-}
 
-.dark .hover-border-gold:hover {
-  border-color: rgba(198, 168, 75, 0.6);
-  box-shadow: 0 0 0 1px rgba(198, 168, 75, 0.08);
-}
 
 /* text-stroke-gold dark */
-.dark .text-stroke-gold {
-  -webkit-text-stroke-color: #E4D49A;
-}
 
 /* =========================================================================
    Phase 9 CSS Enhancements — ambient orbs, particle trails, text scramble,
@@ -3445,15 +2915,6 @@ input:focus, textarea:focus, select:focus {
   z-index: 0;
 }
 
-.dark .ambient-orb {
-  background: radial-gradient(
-    circle at 40% 40%,
-    rgba(198, 168, 75, 0.12) 0%,
-    rgba(228, 212, 154, 0.04) 40%,
-    rgba(13, 27, 42, 0.01) 70%,
-    transparent 100%
-  );
-}
 
 /* ── 2. Particle Trail ─────────────────────────────────────────────────── */
 
@@ -3507,13 +2968,6 @@ input:focus, textarea:focus, select:focus {
   animation: particleDrift 3s ease-in-out 1.2s infinite;
 }
 
-.dark .particle-trail::before {
-  background: rgba(198, 168, 75, 0.3);
-}
-
-.dark .particle-trail::after {
-  background: rgba(228, 212, 154, 0.2);
-}
 
 /* ── 3. Text Scramble Reveal ───────────────────────────────────────────── */
 
@@ -3602,9 +3056,6 @@ input:focus, textarea:focus, select:focus {
   animation: morphBorder 8s ease-in-out infinite;
 }
 
-.dark .morphing-border {
-  border-color: rgba(198, 168, 75, 0.15);
-}
 
 /* ── 6. Card Aura ──────────────────────────────────────────────────────── */
 
@@ -3627,9 +3078,6 @@ input:focus, textarea:focus, select:focus {
   animation: cardAura 4s ease-in-out infinite;
 }
 
-.dark .card-aura {
-  animation: cardAuraDark 4s ease-in-out infinite;
-}
 
 @keyframes cardAuraDark {
   0%, 100% {
@@ -3706,35 +3154,6 @@ input:focus, textarea:focus, select:focus {
     #F9F8F5;
 }
 
-.dark .gradient-mesh-bg {
-  background:
-    radial-gradient(
-      ellipse 600px 400px at 15% 20%,
-      rgba(198, 168, 75, 0.06) 0%,
-      transparent 100%
-    ),
-    radial-gradient(
-      ellipse 500px 500px at 80% 10%,
-      rgba(228, 212, 154, 0.04) 0%,
-      transparent 100%
-    ),
-    radial-gradient(
-      ellipse 700px 300px at 50% 70%,
-      rgba(198, 168, 75, 0.03) 0%,
-      transparent 100%
-    ),
-    radial-gradient(
-      ellipse 400px 600px at 90% 85%,
-      rgba(13, 27, 42, 0.15) 0%,
-      transparent 100%
-    ),
-    radial-gradient(
-      ellipse 350px 350px at 30% 90%,
-      rgba(228, 212, 154, 0.02) 0%,
-      transparent 100%
-    ),
-    #0D1B2A;
-}
 
 /* ── 9. Hover Ripple ───────────────────────────────────────────────────── */
 
@@ -3882,10 +3301,6 @@ input:focus, textarea:focus, select:focus {
   transform: scale(1.02);
 }
 
-.dark .liquid-card {
-  background: linear-gradient(135deg, #0D1B2A 0%, #1a2d47 100%);
-  color: #F9F8F5;
-}
 
 /* ── 2. Neon Ring ─────────────────────────────────────────────────────── */
 
@@ -3911,9 +3326,6 @@ input:focus, textarea:focus, select:focus {
   animation: neonPulse 3s ease-in-out infinite;
 }
 
-.dark .neon-ring {
-  border-color: rgba(198, 168, 75, 0.7);
-}
 
 /* ── 3. Slide Panels ──────────────────────────────────────────────────── */
 
@@ -3953,12 +3365,6 @@ input:focus, textarea:focus, select:focus {
   opacity: 1;
 }
 
-.dark .slide-panel-left,
-.dark .slide-panel-right {
-  background: #0D1B2A;
-  color: #F9F8F5;
-  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.4);
-}
 
 /* ── 4. Text Noise ────────────────────────────────────────────────────── */
 
@@ -3978,10 +3384,6 @@ input:focus, textarea:focus, select:focus {
   mix-blend-mode: multiply;
 }
 
-.dark .text-noise::before {
-  mix-blend-mode: overlay;
-  opacity: 0.06;
-}
 
 /* ── 5. Reveal Mask Circular ──────────────────────────────────────────── */
 
@@ -4050,17 +3452,6 @@ input:focus, textarea:focus, select:focus {
   border-color: rgba(198, 168, 75, 0.3);
 }
 
-.dark .card-hover-lift-glass {
-  background: rgba(13, 27, 42, 0.85);
-  border-color: rgba(198, 168, 75, 0.2);
-}
-
-.dark .card-hover-lift-glass:hover {
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.3),
-    0 8px 16px rgba(0, 0, 0, 0.2);
-  border-color: rgba(198, 168, 75, 0.5);
-}
 
 /* ── 8. Gradient Border Thin ──────────────────────────────────────────── */
 
@@ -4091,20 +3482,6 @@ input:focus, textarea:focus, select:focus {
   background: #F9F8F5;
 }
 
-.dark .gradient-border-thin {
-  background: linear-gradient(
-    135deg,
-    #C6A84B,
-    rgba(198, 168, 75, 0.1) 40%,
-    rgba(198, 168, 75, 0.1) 60%,
-    #C6A84B
-  );
-  background-size: 300% 300%;
-}
-
-.dark .gradient-border-thin > * {
-  background: #0D1B2A;
-}
 
 /* ── 9. Hover Glow Text Gold ──────────────────────────────────────────── */
 
@@ -4120,12 +3497,6 @@ input:focus, textarea:focus, select:focus {
     0 0 40px rgba(198, 168, 75, 0.1);
 }
 
-.dark .hover-glow-text-gold:hover {
-  text-shadow:
-    0 0 10px rgba(198, 168, 75, 0.6),
-    0 0 30px rgba(198, 168, 75, 0.3),
-    0 0 60px rgba(198, 168, 75, 0.15);
-}
 
 /* ── 10. Floating Badge ───────────────────────────────────────────────── */
 
@@ -4573,41 +3944,6 @@ input:focus, textarea:focus, select:focus {
    14. DARK MODE ORGANIC VARIANTS
    ───────────────────────────────────────── */
 
-.dark .card-glass-organic {
-  background: rgba(26, 50, 80, 0.6);
-  border-color: rgba(198, 168, 75, 0.15);
-}
-
-.dark .card-glass-organic:hover {
-  background: rgba(26, 50, 80, 0.85);
-  border-color: rgba(198, 168, 75, 0.3);
-  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.2);
-}
-
-.dark .card-glass-pill {
-  background: rgba(26, 50, 80, 0.55);
-  border-color: rgba(198, 168, 75, 0.08);
-}
-
-.dark .card-glass-pill:hover {
-  background: rgba(26, 50, 80, 0.8);
-  border-color: rgba(198, 168, 75, 0.2);
-}
-
-.dark .card-ultra-rounded {
-  background: rgba(26, 50, 80, 0.55);
-  border-color: rgba(198, 168, 75, 0.1);
-}
-
-.dark .card-ultra-rounded:hover {
-  background: rgba(26, 50, 80, 0.8);
-  border-color: rgba(198, 168, 75, 0.25);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-}
-
-.dark .spotlight-card::before {
-  background: radial-gradient(circle, rgba(198, 168, 75, 0.1) 0%, transparent 70%);
-}
 
 /* ========================================
    PHASE 14 — ADVANCED TYPOGRAPHY, 3D, & SHADOWS
@@ -4806,56 +4142,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* Dark mode typography variants */
-.dark .body-lg {
-  color: #F0EDE8;
-}
 
-.dark .body-base {
-  color: #F0EDE8;
-}
-
-.dark .body-sm {
-  color: #D0D0D0;
-}
-
-.dark .body-xs {
-  color: #8A9AB0;
-}
-
-.dark .text-engraved {
-  color: rgba(240, 237, 232, 0.1);
-  text-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.04),
-    0 -1px 0 rgba(0, 0, 0, 0.2);
-}
-
-.dark .text-shadow-elegant {
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.15),
-    0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.dark .text-shadow-lifted {
-  text-shadow:
-    0 1px 0 rgba(198, 168, 75, 0.25),
-    0 2px 4px rgba(0, 0, 0, 0.2),
-    0 8px 16px rgba(0, 0, 0, 0.15);
-}
-
-.dark .text-metallic-gold {
-  background: linear-gradient(
-    180deg,
-    #E4D49A 0%,
-    #C6A84B 30%,
-    #D4B85A 50%,
-    #C6A84B 70%,
-    #A88B35 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 1px 0 rgba(198, 168, 75, 0.2));
-}
 
 /* ─────────────────────────────────────────
    2. ADVANCED 3D RENDERED ELEMENTS
@@ -5013,29 +4300,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* Dark mode 3D variants */
-.dark .card-3d-premium {
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 4px 8px rgba(0,0,0,0.15), 0 8px 16px rgba(0,0,0,0.1);
-}
 
-.dark .card-3d-premium:hover {
-  box-shadow: 0 32px 64px rgba(0,0,0,0.4), 0 16px 32px rgba(0,0,0,0.2), -8px 16px 32px rgba(198,168,75,0.04), 0 0 0 1px rgba(198,168,75,0.2);
-}
-
-.dark .panel-3d-float {
-  box-shadow: 0 1px 2px rgba(0,0,0,0.2), 0 4px 8px rgba(0,0,0,0.15), 0 16px 32px rgba(0,0,0,0.2);
-}
-
-.dark .panel-3d-float:hover {
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 16px 32px rgba(0,0,0,0.25), 0 32px 64px rgba(0,0,0,0.3), 0 0 48px rgba(198,168,75,0.04);
-}
-
-.dark .inset-3d {
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2), inset 0 4px 8px rgba(0,0,0,0.1), 0 1px 0 rgba(255,255,255,0.05);
-}
-
-.dark .raised-3d {
-  box-shadow: 0 1px 0 rgba(255,255,255,0.04), 0 2px 4px rgba(0,0,0,0.2), 0 4px 8px rgba(0,0,0,0.15), 0 8px 16px rgba(0,0,0,0.1);
-}
 
 /* ─────────────────────────────────────────
    3. PREMIUM SHADOW ELEVATION SYSTEM
@@ -5191,17 +4456,6 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* Dark mode shadow variants */
-.dark .shadow-sm { box-shadow: 0 1px 2px rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.3); }
-.dark .shadow-md { box-shadow: 0 1px 2px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.2), 0 4px 8px rgba(0,0,0,0.2); }
-.dark .shadow-lg { box-shadow: 0 1px 2px rgba(0,0,0,0.2), 0 4px 8px rgba(0,0,0,0.2), 0 8px 16px rgba(0,0,0,0.3), 0 16px 32px rgba(0,0,0,0.2); }
-.dark .shadow-xl { box-shadow: 0 1px 2px rgba(0,0,0,0.2), 0 4px 8px rgba(0,0,0,0.2), 0 8px 16px rgba(0,0,0,0.3), 0 16px 32px rgba(0,0,0,0.3), 0 24px 48px rgba(0,0,0,0.2); }
-.dark .shadow-2xl { box-shadow: 0 4px 8px rgba(0,0,0,0.3), 0 8px 16px rgba(0,0,0,0.3), 0 16px 32px rgba(0,0,0,0.3), 0 24px 48px rgba(0,0,0,0.2), 0 32px 64px rgba(0,0,0,0.2); }
-.dark .shadow-gold { box-shadow: 0 4px 8px rgba(198,168,75,0.06), 0 8px 16px rgba(198,168,75,0.04), 0 16px 32px rgba(198,168,75,0.03); }
-.dark .shadow-gold-lg { box-shadow: 0 4px 8px rgba(198,168,75,0.08), 0 8px 16px rgba(198,168,75,0.06), 0 16px 32px rgba(198,168,75,0.04), 0 24px 48px rgba(198,168,75,0.02), 0 0 0 1px rgba(198,168,75,0.1); }
-.dark .shadow-neu { box-shadow: 6px 6px 12px rgba(0,0,0,0.3), -6px -6px 12px rgba(26,50,80,0.4); }
-.dark .shadow-neu-inset { box-shadow: inset 4px 4px 8px rgba(0,0,0,0.25), inset -4px -4px 8px rgba(26,50,80,0.3); }
-.dark .shadow-directional { box-shadow: -4px -4px 8px rgba(26,50,80,0.3), 4px 4px 12px rgba(0,0,0,0.3); }
-.dark .shadow-inner { box-shadow: inset 0 2px 4px rgba(0,0,0,0.2), inset 0 1px 2px rgba(0,0,0,0.15); }
 
 /* ─────────────────────────────────────────
    4. COMBINED EFFECTS — Typography + 3D + Shadows
@@ -5257,17 +4511,6 @@ input:focus, textarea:focus, select:focus {
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
-.dark .glass-3d-card {
-  background: rgba(26, 50, 80, 0.65);
-  border-color: rgba(198, 168, 75, 0.12);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.2), 0 4px 8px rgba(0,0,0,0.15), 0 8px 16px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.03);
-}
-
-.dark .glass-3d-card:hover {
-  background: rgba(26, 50, 80, 0.85);
-  border-color: rgba(198, 168, 75, 0.3);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 8px 16px rgba(0,0,0,0.2), 0 16px 32px rgba(0,0,0,0.3), 0 24px 48px rgba(0,0,0,0.2), 0 0 0 1px rgba(198,168,75,0.15), inset 0 1px 0 rgba(255,255,255,0.05);
-}
 
 /* ========================================
    PHASE 14 — TYPOGRAPHY, SHADOW & GRADIENT UPGRADE
@@ -5875,243 +5118,33 @@ input:focus, textarea:focus, select:focus {
    ───────────────────────────────────────────────────────────────────────── */
 
 /* Heading dark mode adjustments */
-.dark .heading-display {
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 2px rgba(198, 168, 75, 0.08);
-}
 
-.dark .heading-1 {
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25), 0 0 2px rgba(198, 168, 75, 0.06);
-}
-
-.dark .heading-2 {
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-.dark .heading-3 {
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
-}
-
-.dark .heading-4 {
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
 
 /* Body text dark mode */
-.dark .body-lg {
-  color: #C8CCD4;
-}
 
-.dark .body-sm {
-  color: #8A9AB0;
-}
 
 /* Text shadow dark mode */
-.dark .text-shadow-elegant {
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 1px rgba(198, 168, 75, 0.08);
-}
 
-.dark .text-shadow-lifted {
-  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 2px rgba(198, 168, 75, 0.1);
-}
-
-.dark .text-shadow-gold {
-  text-shadow: 0 0 24px rgba(198, 168, 75, 0.35), 0 0 48px rgba(198, 168, 75, 0.15);
-}
-
-.dark .gold-glow-text {
-  filter: drop-shadow(0 0 24px rgba(198, 168, 75, 0.4)) drop-shadow(0 0 48px rgba(198, 168, 75, 0.15));
-}
 
 /* Shadow system dark mode */
-.dark .shadow-premium {
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.2),
-    0 4px 8px rgba(0, 0, 0, 0.15),
-    0 16px 32px rgba(0, 0, 0, 0.2);
-}
 
-.dark .shadow-premium-lg {
-  box-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.15),
-    0 8px 16px rgba(0, 0, 0, 0.15),
-    0 24px 48px rgba(0, 0, 0, 0.25),
-    0 48px 80px rgba(0, 0, 0, 0.1);
-}
-
-.dark .shadow-gold {
-  box-shadow: 0 4px 16px rgba(198, 168, 75, 0.2), 0 0 32px rgba(198, 168, 75, 0.1);
-}
-
-.dark .shadow-gold-lg {
-  box-shadow: 0 8px 32px rgba(198, 168, 75, 0.3), 0 0 64px rgba(198, 168, 75, 0.15);
-}
-
-.dark .shadow-glow-gold {
-  box-shadow: 0 0 24px rgba(198, 168, 75, 0.25), 0 0 72px rgba(198, 168, 75, 0.1);
-}
-
-.dark .shadow-card {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.dark .shadow-card-hover:hover {
-  box-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.15),
-    0 8px 16px rgba(0, 0, 0, 0.2),
-    0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-.dark .shadow-elevated {
-  box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.2),
-    0 16px 32px rgba(0, 0, 0, 0.25),
-    0 32px 64px rgba(0, 0, 0, 0.2);
-}
-
-.dark .shadow-navy {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 12px 32px rgba(0, 0, 0, 0.2);
-}
-
-.dark .shadow-3d {
-  box-shadow:
-    4px 4px 0 rgba(0, 0, 0, 0.15),
-    8px 8px 0 rgba(0, 0, 0, 0.1),
-    12px 12px 0 rgba(198, 168, 75, 0.05);
-}
-
-.dark .shadow-inner-gold {
-  box-shadow:
-    inset 0 0 24px rgba(198, 168, 75, 0.06),
-    inset 0 0 72px rgba(198, 168, 75, 0.03);
-}
-
-.dark .raised-3d {
-  box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.15),
-    0 12px 24px rgba(0, 0, 0, 0.2);
-}
-
-.dark .raised-3d:hover {
-  box-shadow:
-    0 8px 16px rgba(0, 0, 0, 0.2),
-    0 20px 40px rgba(0, 0, 0, 0.3),
-    0 0 24px rgba(198, 168, 75, 0.04);
-}
-
-.dark .panel-3d-float {
-  box-shadow:
-    0 8px 16px rgba(0, 0, 0, 0.2),
-    0 20px 40px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(198, 168, 75, 0.1);
-}
-
-.dark .panel-3d-float:hover {
-  box-shadow:
-    0 12px 24px rgba(0, 0, 0, 0.25),
-    0 32px 64px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(198, 168, 75, 0.15),
-    0 0 40px rgba(198, 168, 75, 0.04);
-}
 
 /* Gradient dark mode adjustments */
-.dark .gradient-gold-subtle {
-  background: linear-gradient(135deg, rgba(198, 168, 75, 0.04), rgba(228, 212, 154, 0.06), rgba(198, 168, 75, 0.04));
-}
 
-.dark .gradient-section-dark {
-  background: linear-gradient(180deg, #0A1628 0%, #0E1E35 50%, #0A1628 100%);
-}
-
-.dark .gradient-card-shine::before {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(198, 168, 75, 0.03),
-    rgba(228, 212, 154, 0.06),
-    rgba(198, 168, 75, 0.03),
-    transparent
-  );
-}
-
-.dark .gradient-border-glow::before {
-  background: linear-gradient(135deg, rgba(198, 168, 75, 0.4), rgba(228, 212, 154, 0.15), rgba(198, 168, 75, 0.4));
-}
-
-.dark .gradient-border-glow:hover::before {
-  background: linear-gradient(135deg, rgba(198, 168, 75, 0.6), rgba(228, 212, 154, 0.25), rgba(198, 168, 75, 0.6));
-}
 
 /* Dark overlay adjustments */
-.dark .gradient-overlay-dark {
-  background: linear-gradient(180deg, rgba(8, 18, 32, 0) 0%, rgba(8, 18, 32, 0.85) 100%);
-}
 
-.dark .gradient-overlay-gold {
-  background: linear-gradient(
-    180deg,
-    rgba(8, 18, 32, 0) 0%,
-    rgba(8, 18, 32, 0.7) 60%,
-    rgba(198, 168, 75, 0.06) 100%
-  );
-}
 
 /* 3D cards dark mode */
-.dark .card-glass-organic {
-  background: rgba(26, 50, 80, 0.6);
-  border-color: rgba(198, 168, 75, 0.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 12px 32px rgba(0, 0, 0, 0.2);
-}
 
-.dark .card-glass-organic:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 20px 48px rgba(0, 0, 0, 0.25), 0 0 24px rgba(198, 168, 75, 0.04);
-}
-
-.dark .card-3d-premium {
-  box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.15),
-    0 4px 8px rgba(0, 0, 0, 0.15),
-    0 16px 32px rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(198, 168, 75, 0.08);
-}
-
-.dark .card-3d-premium:hover {
-  box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.2),
-    0 12px 24px rgba(0, 0, 0, 0.25),
-    0 32px 64px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(198, 168, 75, 0.15),
-    0 0 40px rgba(198, 168, 75, 0.06);
-}
 
 /* Spotlight card dark mode */
-.dark .spotlight-card::before {
-  background: radial-gradient(
-    300px circle at var(--spotlight-x) var(--spotlight-y),
-    rgba(198, 168, 75, 0.08),
-    transparent 60%
-  );
-}
 
 /* Ambient orb dark mode */
-.dark .ambient-orb {
-  background: radial-gradient(
-    circle at center,
-    rgba(198, 168, 75, 0.08) 0%,
-    rgba(198, 168, 75, 0.02) 40%,
-    transparent 70%
-  );
-}
 
 /* Perspective grid dark mode */
-.dark .perspective-grid::before {
-  background-image:
-    linear-gradient(rgba(198, 168, 75, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(198, 168, 75, 0.04) 1px, transparent 1px);
-}
 
 /* Morphing border dark mode */
-.dark .morphing-border::before {
-  background: linear-gradient(135deg, rgba(198, 168, 75, 0.4), rgba(228, 212, 154, 0.1), rgba(198, 168, 75, 0.4));
-}
 
 /* ======================================== PRACTICE AREA & HERO ENHANCEMENTS ======================================== */
 
@@ -6450,70 +5483,7 @@ input:focus, textarea:focus, select:focus {
    ───────────────────────────────────────── */
 
 /* Dark mode for practice area cards */
-.dark .pa-service-card {
-  background: rgba(26, 50, 80, 0.5);
-  border-color: rgba(198, 168, 75, 0.08);
-}
 
-.dark .pa-service-card:hover {
-  background: rgba(26, 50, 80, 0.7);
-  border-color: rgba(198, 168, 75, 0.2);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
-}
-
-.dark .pa-service-card::before {
-  background: linear-gradient(90deg, #C6A84B, rgba(198, 168, 75, 0.5));
-}
-
-.dark .pa-process-step {
-  background: rgba(26, 50, 80, 0.4);
-  border-color: rgba(198, 168, 75, 0.06);
-}
-
-.dark .pa-process-step:hover {
-  background: rgba(26, 50, 80, 0.6);
-  border-color: rgba(198, 168, 75, 0.15);
-}
-
-.dark .pa-case-card {
-  background: rgba(10, 22, 40, 0.6);
-  border-color: rgba(198, 168, 75, 0.08);
-}
-
-.dark .pa-case-card:hover {
-  background: rgba(10, 22, 40, 0.8);
-  border-color: rgba(198, 168, 75, 0.2);
-}
-
-.dark .pa-faq-item {
-  border-color: rgba(198, 168, 75, 0.1);
-}
-
-.dark .pa-faq-item.active {
-  border-color: rgba(198, 168, 75, 0.25);
-}
-
-.dark .pa-faq-trigger {
-  color: #F0EDE8;
-}
-
-.dark .pa-related-card {
-  background: rgba(26, 50, 80, 0.5);
-  border-color: rgba(198, 168, 75, 0.08);
-}
-
-.dark .pa-related-card:hover {
-  background: rgba(26, 50, 80, 0.7);
-  border-color: rgba(198, 168, 75, 0.25);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
-}
-
-.dark .hero-gradient-overlay {
-  background: 
-    linear-gradient(180deg, rgba(10, 22, 40, 0.4) 0%, rgba(10, 22, 40, 0.7) 50%, rgba(10, 22, 40, 0.98) 100%),
-    linear-gradient(90deg, rgba(10, 22, 40, 0.5) 0%, transparent 60%),
-    radial-gradient(ellipse at 20% 80%, rgba(198, 168, 75, 0.05) 0%, transparent 50%);
-}
 
 /* ─────────────────────────────────────────
    4. PAGE TRANSITION CLASSES

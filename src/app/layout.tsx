@@ -7,7 +7,7 @@ import { ThemeProvider } from "next-themes";
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["700", "800"],
   style: ["normal", "italic"],
   display: "swap",
 });
@@ -359,6 +359,13 @@ export default function RootLayout({
         {/* Preconnect to external resources */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Preload critical hero image for LCP */}
+        <link
+          rel="preload"
+          as="image"
+          href="/images/hero-slide-brand-logo.jpg"
+          type="image/jpeg"
+        />
       </head>
       <body
         className={`${playfair.variable} ${outfit.variable} antialiased bg-background text-foreground`}
