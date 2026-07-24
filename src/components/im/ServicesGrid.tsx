@@ -287,7 +287,7 @@ export function ServicesGrid({ onOpenPracticeArea }: { onOpenPracticeArea?: (slu
   return (
     <section
       id="services"
-      className="relative py-20 sm:py-28 lg:py-36 bg-brand-cream bg-stripe-pattern overflow-hidden corner-gold-tl corner-gold-br"
+      className="premium-section-surface premium-section-surface--light relative py-20 sm:py-28 lg:py-36 bg-brand-cream bg-stripe-pattern overflow-hidden corner-gold-tl corner-gold-br"
       aria-labelledby="services-heading"
     >
       {/* ── Decorative background blobs ── */}

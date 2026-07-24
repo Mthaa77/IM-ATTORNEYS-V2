@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, useInView } from "framer-motion";
-import { useRef, useCallback, useMemo } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import {
   FileIcon,
   ClipboardCheck,
@@ -68,37 +68,6 @@ const hexPositions = [
   { col: 2, row: 1, yOffset: 28 },
 ];
 
-/* ─── Deterministic seeded pseudo-random ─── */
-function seededRandom(seed: number) {
-  const x = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
-  return x - Math.floor(x);
-}
-
-/* ─── Floating Gold Particle ─── */
-function GoldParticle({ index }: { index: number }) {
-  const s = index + 1; // seed offset (avoid 0)
-  const size = 2 + seededRandom(s) * 4;
-  const left = seededRandom(s + 50) * 100;
-  const delay = seededRandom(s + 100) * 8;
-  const duration = 10 + seededRandom(s + 150) * 12;
-  const opacity = 0.15 + seededRandom(s + 200) * 0.25;
-
-  return (
-    <div
-      className="absolute rounded-full pointer-events-none"
-      aria-hidden="true"
-      style={{
-        width: size,
-        height: size,
-        left: `${left}%`,
-        bottom: "-5%",
-        background: `radial-gradient(circle, rgba(198,168,75,${opacity}) 0%, transparent 70%)`,
-        animation: `particleFloat ${duration}s ${delay}s linear infinite`,
-      }}
-    />
-  );
-}
-
 /* ─── Hexagonal Card ─── */
 function HexCard({
   resource,
@@ -110,30 +79,6 @@ function HexCard({
   const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { once: true, margin: "-60px" });
   const pos = hexPositions[index];
-
-  // Mouse tracking for 3D tilt
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const rotateX = useTransform(y, [-0.5, 0.5], [12, -12]);
-  const rotateY = useTransform(x, [-0.5, 0.5], [-12, 12]);
-
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent) => {
-      const rect = cardRef.current?.getBoundingClientRect();
-      if (!rect) return;
-      const px = (e.clientX - rect.left) / rect.width - 0.5;
-      const py = (e.clientY - rect.top) / rect.height - 0.5;
-      x.set(px);
-      y.set(py);
-    },
-    [x, y]
-  );
-
-  const handleMouseLeave = useCallback(() => {
-    x.set(0);
-    y.set(0);
-  }, [x, y]);
 
   const Icon = resource.icon;
 
@@ -152,16 +97,13 @@ function HexCard({
     >
       <motion.div
         className="relative cursor-pointer group"
-        style={{ perspective: 800, rotateX, rotateY }}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
         role="article"
         aria-label={resource.title}
         tabIndex={0}
       >
         {/* Gold glow underneath */}
         <div
-          className="absolute inset-0 rounded-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"
+          className="absolute inset-3 opacity-0 group-hover:opacity-60 transition-opacity duration-300"
           style={{ background: "rgba(198,168,75,0.25)" }}
           aria-hidden="true"
         />
@@ -180,8 +122,6 @@ function HexCard({
             style={{
               background:
                 "linear-gradient(135deg, rgba(26,50,80,0.6) 0%, rgba(13,27,42,0.8) 50%, rgba(26,50,80,0.6) 100%)",
-              backdropFilter: "blur(16px)",
-              WebkitBackdropFilter: "blur(16px)",
             }}
           />
 
@@ -414,12 +354,11 @@ function OrnamentalDivider() {
 /* ─── Main Component ─── */
 export function LegalResources() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const particles = useMemo(() => Array.from({ length: 18 }, (_, i) => i), []);
 
   return (
     <section
       ref={sectionRef}
-      className="relative py-20 sm:py-28 lg:py-36 overflow-hidden"
+      className="premium-section-surface premium-section-surface--dark relative py-20 sm:py-28 lg:py-36 overflow-hidden"
       style={{ background: "#0D1B2A" }}
       aria-labelledby="legal-resources-heading"
     >
@@ -445,13 +384,6 @@ export function LegalResources() {
             "radial-gradient(ellipse at 50% 40%, rgba(198,168,75,0.06) 0%, transparent 60%)",
         }}
       />
-
-      {/* Floating gold particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        {particles.map((i) => (
-          <GoldParticle key={i} index={i} />
-        ))}
-      </div>
 
       {/* Top gold accent line */}
       <div

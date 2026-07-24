@@ -26,7 +26,7 @@ export function Founder() {
     <section
       ref={ref}
       id="founder"
-      className="relative w-full bg-brand-cream overflow-hidden wave-divider-bottom"
+      className="premium-section-surface premium-section-surface--light relative bg-brand-cream overflow-hidden"
       aria-label="Founder biography"
     >
       {/* Decorative corner accent */}

@@ -117,30 +117,6 @@ function ConstellationConnectorDesktop() {
         </g>
       ))}
 
-      {/* Animated particles along paths */}
-      {paths.map((path, i) => (
-        <motion.circle
-          key={`particle-${i}`}
-          r="3"
-          fill="#C6A84B"
-          opacity={0.8}
-          filter="url(#goldGlowLine)"
-        >
-          <motion.animateMotion
-            dur="4s"
-            begin={`${path.delay + 1.5}s`}
-            repeatCount="indefinite"
-            path={path.d}
-          />
-          <motion.animate
-            attributeName="opacity"
-            values="0;0.9;0.9;0"
-            dur="4s"
-            begin={`${path.delay + 1.5}s`}
-            repeatCount="indefinite"
-          />
-        </motion.circle>
-      ))}
     </svg>
   );
 }
@@ -211,26 +187,6 @@ function ConstellationConnectorMobile() {
               ease: "easeInOut",
             }}
           />
-          <motion.circle
-            key={`mp-${i}`}
-            r="2.5"
-            fill="#C6A84B"
-            opacity={0.7}
-          >
-            <motion.animateMotion
-              dur="3.5s"
-              begin={`${path.delay + 1.5}s`}
-              repeatCount="indefinite"
-              path={path.d}
-            />
-            <motion.animate
-              attributeName="opacity"
-              values="0;0.8;0.8;0"
-              dur="3.5s"
-              begin={`${path.delay + 1.5}s`}
-              repeatCount="indefinite"
-            />
-          </motion.circle>
         </g>
       ))}
     </svg>
@@ -280,20 +236,7 @@ function ProcessNode({ step, index }: ProcessNodeProps) {
           whileHover={{ scale: 1.08 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
         >
-          {/* Animated rotating gold ring (conic-gradient) */}
-          <div
-            className="absolute -inset-[3px] rounded-full opacity-0"
-            style={{
-              background:
-                "conic-gradient(from 0deg, transparent 0%, #C6A84B 25%, transparent 50%, #E4D49A 75%, transparent 100%)",
-              animation: isInView
-                ? "spin 3s linear infinite"
-                : "none",
-            }}
-          />
-
-          {/* Pulse ring on hover */}
-          <div className="absolute -inset-[8px] rounded-full border-2 border-brand-gold/0 group-hover:border-brand-gold/20 transition-all duration-700 animate-[goldPulseRing_2s_ease-in-out_infinite] opacity-0 group-hover:opacity-100" />
+          <div className="absolute -inset-[8px] rounded-full border border-brand-gold/0 group-hover:border-brand-gold/25 transition-colors duration-300" />
 
           {/* Main circle */}
           <div
@@ -341,23 +284,12 @@ function ProcessNode({ step, index }: ProcessNodeProps) {
           </div>
         </motion.div>
 
-        {/* Animated rotating gold ring wrapper */}
-        <motion.div
+        {/* Static premium gold ring */}
+        <div
           className="absolute -inset-[3px] rounded-full pointer-events-none"
-          initial={{ opacity: 0, rotate: 0 }}
-          animate={
-            isInView
-              ? {
-                  opacity: 1,
-                  rotate: 360,
-                }
-              : { opacity: 0, rotate: 0 }
-          }
-          transition={{
-            opacity: { duration: 0.6, delay: 0.2 + index * 0.15 },
-            rotate: { duration: 8, repeat: Infinity, ease: "linear" },
-          }}
           style={{
+            opacity: isInView ? 1 : 0,
+            transition: `opacity 450ms ${0.1 + index * 0.08}s ease-out`,
             background:
               "conic-gradient(from 0deg, transparent 0%, #C6A84B 15%, transparent 30%, #E4D49A 50%, transparent 65%, #C6A84B 85%, transparent 100%)",
             mask: "radial-gradient(farthest-side, transparent calc(100% - 2px), black calc(100% - 2px))",

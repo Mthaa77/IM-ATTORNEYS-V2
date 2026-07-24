@@ -313,23 +313,15 @@ function CaseStudyCard({
         <div className="px-6 py-3">
           <div className="relative flex items-center justify-center">
             <div className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-gold/25 to-transparent" />
-            <motion.div
+            <div
               className="relative z-10 w-10 h-10 rounded-full flex items-center justify-center"
               style={{
                 background: "linear-gradient(135deg, #C6A84B, #E4D49A)",
                 boxShadow: "0 0 20px rgba(198,168,75,0.3)",
               }}
-              animate={{
-                boxShadow: [
-                  "0 0 20px rgba(198,168,75,0.3)",
-                  "0 0 35px rgba(198,168,75,0.5)",
-                  "0 0 20px rgba(198,168,75,0.3)",
-                ],
-              }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             >
               <ChevronRight className="w-4 h-4 text-brand-dark" strokeWidth={2.5} />
-            </motion.div>
+            </div>
           </div>
         </div>
 
@@ -507,7 +499,7 @@ export function BeforeAfterSlider() {
     <section
       ref={sectionRef}
       id="before-after"
-      className="relative w-full overflow-hidden"
+      className="premium-section-surface premium-section-surface--dark relative overflow-hidden"
       style={{ backgroundColor: "#0A1222" }}
       aria-label="Case Transformation Theatre"
     >
