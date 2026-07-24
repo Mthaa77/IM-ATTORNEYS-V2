@@ -1,7 +1,9 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect, ReactNode } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useRef, useEffect, ReactNode } from "react";
+
+const PREMIUM_EASE = [0.22, 1, 0.36, 1] as const;
 
 interface ScrollRevealProps {
   children: ReactNode;
@@ -17,19 +19,21 @@ export function ScrollReveal({
   className,
   delay = 0,
   direction = "up",
-  duration = 0.6,
+  duration = 0.48,
   once = true,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once, margin: "-80px" });
+  const isInView = useInView(ref, { once, margin: "-48px" });
+  const reduceMotion = useReducedMotion();
 
   const directionOffset = {
-    up: { x: 0, y: 40 },
-    down: { x: 0, y: -40 },
-    left: { x: 40, y: 0 },
-    right: { x: -40, y: 0 },
+    up: { x: 0, y: 18 },
+    down: { x: 0, y: -18 },
+    left: { x: 18, y: 0 },
+    right: { x: -18, y: 0 },
     none: { x: 0, y: 0 },
   };
+  const offset = reduceMotion ? directionOffset.none : directionOffset[direction];
 
   return (
     <motion.div
@@ -37,22 +41,22 @@ export function ScrollReveal({
       className={className}
       initial={{
         opacity: 0,
-        x: directionOffset[direction].x,
-        y: directionOffset[direction].y,
+        x: offset.x,
+        y: offset.y,
       }}
       animate={
         isInView
           ? { opacity: 1, x: 0, y: 0 }
           : {
               opacity: 0,
-              x: directionOffset[direction].x,
-              y: directionOffset[direction].y,
+              x: offset.x,
+              y: offset.y,
             }
       }
       transition={{
         duration,
-        delay,
-        ease: "easeOut",
+        delay: reduceMotion ? 0 : Math.min(delay, 0.24),
+        ease: PREMIUM_EASE,
       }}
     >
       {children}
@@ -70,11 +74,12 @@ interface StaggerContainerProps {
 export function StaggerContainer({
   children,
   className,
-  staggerDelay = 0.1,
+  staggerDelay = 0.06,
   once = true,
 }: StaggerContainerProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once, margin: "-80px" });
+  const isInView = useInView(ref, { once, margin: "-48px" });
+  const reduceMotion = useReducedMotion();
 
   return (
     <motion.div
@@ -86,7 +91,7 @@ export function StaggerContainer({
         hidden: {},
         visible: {
           transition: {
-            staggerChildren: staggerDelay,
+            staggerChildren: reduceMotion ? 0 : staggerDelay,
           },
         },
       }}
@@ -97,11 +102,11 @@ export function StaggerContainer({
 }
 
 export const staggerChildVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
+    transition: { duration: 0.45, ease: PREMIUM_EASE },
   },
 };
 
@@ -120,7 +125,7 @@ export function GoldLine({ className = "", width = 60 }: GoldLineProps) {
       className={`h-0.5 bg-brand-gold ${className}`}
       initial={{ width: 0 }}
       animate={isInView ? { width: `${width}px` } : { width: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      transition={{ duration: 0.55, ease: PREMIUM_EASE }}
     />
   );
 }
@@ -184,7 +189,7 @@ function Counter({
 }
 
 function InternalCounter({ end, duration }: { end: number; duration: number }) {
-  const [count, setCount] = useState(0);
+  const valueRef = useRef<HTMLSpanElement>(null);
   const rafRef = useRef<number | null>(null);
   const startTimeRef = useRef<number | null>(null);
 
@@ -203,7 +208,9 @@ function InternalCounter({ end, duration }: { end: number; duration: number }) {
       const eased = 1 - Math.pow(1 - progress, 3);
       const currentValue = Math.round(eased * end);
 
-      setCount(currentValue);
+      if (valueRef.current) {
+        valueRef.current.textContent = String(currentValue);
+      }
 
       if (progress < 1) {
         rafRef.current = requestAnimationFrame(animate);
@@ -219,5 +226,5 @@ function InternalCounter({ end, duration }: { end: number; duration: number }) {
     };
   }, [end, duration]);
 
-  return <>{count}</>;
+  return <span ref={valueRef}>0</span>;
 }
