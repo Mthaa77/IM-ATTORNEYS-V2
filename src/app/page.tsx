@@ -82,10 +82,6 @@ const LegalResources = dynamic(
   () => import("@/components/im/LegalResources").then((m) => ({ default: m.LegalResources })),
   { ssr: false }
 );
-const FeesAndBilling = dynamic(
-  () => import("@/components/im/FeesAndBilling").then((m) => ({ default: m.FeesAndBilling })),
-  { ssr: false }
-);
 const FAQSection = dynamic(
   () => import("@/components/im/FAQSection").then((m) => ({ default: m.FAQSection })),
   { ssr: false }
@@ -104,14 +100,6 @@ const LocationMap = dynamic(
 );
 const NewsletterSection = dynamic(
   () => import("@/components/im/NewsletterSection").then((m) => ({ default: m.NewsletterSection })),
-  { ssr: false }
-);
-const CaseValueEstimator = dynamic(
-  () => import("@/components/im/CaseValueEstimator").then((m) => ({ default: m.CaseValueEstimator })),
-  { ssr: false }
-);
-const VIPConsultationBooking = dynamic(
-  () => import("@/components/im/VIPConsultationBooking").then((m) => ({ default: m.VIPConsultationBooking })),
   { ssr: false }
 );
 const LegalRiskAssessment = dynamic(
@@ -190,10 +178,8 @@ export default function Home() {
               <ServicesGrid onOpenPracticeArea={handleNavigatePracticeArea} />
             </section>
 
-            <CaseValueEstimator />
             <PracticeAreaOnboarding />
             <OurProcess />
-            <VIPConsultationBooking />
             <EmergencyCTA />
             <Founder />
 
@@ -215,7 +201,6 @@ export default function Home() {
             <MilestonesTimeline />
             <LegalInsights />
             <LegalResources />
-            <FeesAndBilling />
             <LegalRiskAssessment />
 
             <section id="faq">
