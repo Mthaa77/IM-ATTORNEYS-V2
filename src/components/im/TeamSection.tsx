@@ -272,7 +272,7 @@ export function TeamSection() {
   return (
     <section
       id="team"
-      className="relative w-full bg-brand-cream overflow-hidden"
+      className="premium-section-surface premium-section-surface--light relative bg-brand-cream overflow-hidden"
       aria-label="Our team"
     >
       {/* ─── Background Decorations ─── */}
