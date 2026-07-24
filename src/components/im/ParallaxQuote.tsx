@@ -1,44 +1,15 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 
 export function ParallaxQuote() {
-  const containerRef = useRef<HTMLElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  // Parallax: background scrolls at 60% of page scroll speed
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
-
-  // Subtle fade-in/out for quote content
-  const quoteOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.25, 0.75, 1],
-    [0.3, 1, 1, 0.3]
-  );
-
-  // Subtle scale breathing effect on the quote
-  const quoteScale = useTransform(
-    scrollYProgress,
-    [0, 0.25, 0.5, 0.75, 1],
-    [0.95, 1, 1, 1, 0.95]
-  );
-
   return (
     <section
-      ref={containerRef}
       className="relative w-full h-[70vh] sm:h-[80vh] lg:h-[85vh] overflow-hidden"
       aria-label="Inspirational quote"
     >
       {/* Parallax background image */}
-      <motion.div
-        className="absolute inset-0 w-full h-full will-change-transform"
-        style={{ y: backgroundY }}
-      >
+      <div className="absolute inset-0 w-full h-full">
         {/* Background image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-110"
@@ -56,7 +27,7 @@ export function ParallaxQuote() {
               "radial-gradient(ellipse at center, transparent 40%, rgba(13,27,42,0.4) 100%)",
           }}
         />
-      </motion.div>
+      </div>
 
       {/* Gold accent lines — top and bottom */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-gold/40 to-transparent z-10" />
@@ -66,7 +37,10 @@ export function ParallaxQuote() {
       <div className="relative z-10 flex items-center justify-center h-full px-6 sm:px-8">
         <motion.div
           className="max-w-4xl mx-auto text-center"
-          style={{ opacity: quoteOpacity, scale: quoteScale }}
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-64px" }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
           {/* Decorative quotation mark */}
           <motion.span
