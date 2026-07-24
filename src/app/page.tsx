@@ -8,7 +8,6 @@ import { ComplianceModals, useComplianceModals } from "@/components/im/Complianc
 import dynamic from "next/dynamic";
 
 // ── Above-the-fold: loaded eagerly for instant FCP ──
-import { LoadingScreen } from "@/components/im/LoadingScreen";
 import { OnboardingBanner } from "@/components/im/OnboardingBanner";
 import { Navigation } from "@/components/im/Navigation";
 import { Hero } from "@/components/im/Hero";
@@ -151,7 +150,6 @@ export default function Home() {
 
   return (
     <BannerProvider>
-      <LoadingScreen />
       <OnboardingBanner />
       <Navigation activePracticeArea={activePracticeArea} onGoHome={handleBackToHome} />
 
@@ -166,11 +164,11 @@ export default function Home() {
         ) : (
           <motion.main
             key="homepage"
-            className="min-h-screen overflow-x-hidden"
+            className="homepage-content min-h-screen overflow-x-hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
           >
             {/* ── Above the fold (eagerly loaded) ── */}
             <section id="home">
