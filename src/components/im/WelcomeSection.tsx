@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
 import {
@@ -78,15 +78,7 @@ const promises = [
 
 export function WelcomeSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-60px" });
-
-  // Parallax for the portrait
-  const { scrollYProgress: imgScroll } = useScroll({
-    target: imageRef,
-    offset: ["start end", "end start"],
-  });
-  const imgY = useTransform(imgScroll, [0, 1], [30, -30]);
 
   return (
     <section
@@ -174,9 +166,7 @@ export function WelcomeSection() {
         <div className="flex flex-col lg:flex-row items-stretch gap-12 lg:gap-20">
           {/* ═══════ LEFT: Director Portrait ═══════ */}
           <motion.div
-            ref={imageRef}
             className="w-full lg:w-[42%] shrink-0 flex justify-center lg:justify-start"
-            style={{ y: imgY }}
           >
             <ScrollReveal direction="left" duration={0.9} delay={0.2}>
               <div className="relative mx-auto max-w-md lg:max-w-none">
