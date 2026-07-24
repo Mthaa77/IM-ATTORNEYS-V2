@@ -151,15 +151,6 @@ export function BailFloatingIcon() {
               boxShadow:
                 "0 4px 20px rgba(0,0,0,0.3), 0 0 20px rgba(198,168,75,0.08), inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.2)",
             }}
-            // Breathing pulse animation
-            animate={{
-              scale: [1, 1.03, 1],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
             whileHover={{
               scale: 1.08,
               y: -2,
@@ -181,27 +172,7 @@ export function BailFloatingIcon() {
                 boxShadow: "0 0 6px rgba(239,68,68,0.6), 0 0 12px rgba(239,68,68,0.3)",
               }}
             >
-              <span className="absolute inset-0 rounded-full bg-red-400 animate-ping opacity-75" />
             </span>
-
-            {/* Subtle gold shine sweep */}
-            <motion.div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
-              <motion.div
-                className="absolute -inset-full"
-                style={{
-                  background:
-                    "linear-gradient(90deg, transparent 0%, rgba(198,168,75,0.12) 45%, rgba(198,168,75,0.2) 50%, rgba(198,168,75,0.12) 55%, transparent 100%)",
-                  transform: "skewX(-20deg)",
-                }}
-                animate={{ left: ["-100%", "200%"] }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  repeatDelay: 4,
-                  ease: "easeInOut",
-                }}
-              />
-            </motion.div>
           </motion.button>
         )}
       </AnimatePresence>
