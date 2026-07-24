@@ -23,20 +23,6 @@ export function WhatsAppButton() {
       whileHover={{ scale: 1.08 }}
       whileTap={{ scale: 0.92 }}
     >
-      {/* Pulse ring */}
-      <motion.span
-        className="absolute inset-0 rounded-full bg-[#25D366]"
-        animate={{
-          scale: [1, 1.25, 1],
-          opacity: [0.35, 0, 0.35],
-        }}
-        transition={{
-          duration: 2.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
       {/* Icon container — smaller on mobile */}
       <span className="relative flex items-center justify-center w-10 h-10 sm:w-[52px] sm:h-[52px]">
         <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 fill-white" />
