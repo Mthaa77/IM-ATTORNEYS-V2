@@ -703,8 +703,6 @@ export function PracticeAreaPage({ slug, onBack, onNavigate }: PracticeAreaPageP
   // Scroll to top on slug change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
-    setScrollProgress(0);
-    setActiveSection("overview");
   }, [slug]);
 
   // Scroll progress bar using requestAnimationFrame
