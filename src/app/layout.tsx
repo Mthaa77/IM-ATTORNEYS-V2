@@ -52,28 +52,28 @@ export const metadata: Metadata = {
   creator: SITE_NAME,
   publisher: SITE_NAME,
   openGraph: {
-    title: `${SITE_NAME} | Boutique Law Firm in Menlyn Maine, Pretoria`,
+    title: `${SITE_NAME} | Strategic Legal Counsel in Pretoria`,
     description:
-      "Expert legal services in family law, RAF claims, criminal law, wills & estates, and commercial law. Female-led boutique firm in Pretoria's Menlyn Maine.",
+      "Human-centred legal representation for families, individuals and businesses from Menlyn Maine, Pretoria.",
     url: SITE_URL,
     siteName: SITE_NAME,
     type: "website",
     locale: "en_ZA",
     images: [
       {
-        url: `${SITE_URL}/images/og-im-attorneys.png`,
+        url: `${SITE_URL}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: `${SITE_NAME} — Boutique Law Firm in Pretoria`,
+        alt: `${SITE_NAME} — Strategic legal counsel in Pretoria`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} | Boutique Law Firm`,
+    title: `${SITE_NAME} | Strategic Legal Counsel`,
     description:
-      "Expert legal services from Pretoria's most prestigious address. Female-led boutique law firm.",
-    images: [`${SITE_URL}/images/og-im-attorneys.png`],
+      "Human-centred legal representation for families, individuals and businesses from Menlyn Maine, Pretoria.",
+    images: [`${SITE_URL}/opengraph-image`],
   },
   robots: {
     index: true,
@@ -109,9 +109,6 @@ const jsonLd = {
   email: "attorneys@iminc.co.za",
   description:
     "100% female black-owned boutique law firm in Menlyn Maine, Pretoria. Specialising in family law, criminal defense, commercial litigation, property law, labour law, and estate planning.",
-  priceRange: "$$",
-  currencyAccepted: "ZAR",
-  paymentAccepted: "Cash, Credit Card, EFT",
   areaServed: {
     "@type": "AdministrativeArea",
     name: "Gauteng, South Africa",
@@ -280,14 +277,6 @@ const faqJsonLd = {
       acceptedAnswer: {
         "@type": "Answer",
         text: "IM Attorneys Inc is a 100% female black-owned boutique law firm founded by Adv. Ingrid Mtsweni. Located in the prestigious Menlyn Maine Precinct, we combine elite legal expertise with a client-centric, accessible approach. Our team handles each matter with the personal attention of a boutique firm while delivering results that rival large corporate practices.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How much does a consultation cost at IM Attorneys?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "IM Attorneys Inc offers transparent fee structures tailored to each matter. We provide an initial consultation to understand your legal needs and discuss our fee options, which may include hourly rates, flat fees, or contingency arrangements depending on the type of case. Contact us for a personalised quote.",
       },
     },
   ],
