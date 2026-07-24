@@ -172,15 +172,13 @@ function DiamondCard({
           whileHover={{ opacity: 1 }}
           transition={{ duration: 0.35 }}
         >
-          <motion.div
+          <div
             className="absolute rounded-sm"
             style={{
               inset: "-2px",
               background:
                 "conic-gradient(from 0deg, #C6A84B, #E4D49A, #C6A84B, #E4D49A, #C6A84B)",
             }}
-            animate={{ rotate: 360 }}
-            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
           />
         </motion.div>
 
