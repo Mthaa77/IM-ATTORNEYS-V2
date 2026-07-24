@@ -133,6 +133,42 @@ html, body {
   }
 }
 
+/* Premium section framing: depth comes from layered borders and restrained
+   shadows, not costly live blur filters or scroll-linked transforms. */
+.premium-section-surface {
+  width: auto;
+  margin: clamp(0.75rem, 2vw, 1.75rem);
+  border-radius: clamp(1.5rem, 3vw, 2.75rem);
+  isolation: isolate;
+  box-shadow:
+    0 24px 70px rgba(13, 27, 42, 0.1),
+    0 8px 24px rgba(13, 27, 42, 0.07);
+}
+
+.premium-section-surface--light {
+  border: 1px solid rgba(198, 168, 75, 0.2);
+  box-shadow:
+    0 30px 80px rgba(13, 27, 42, 0.09),
+    0 10px 30px rgba(13, 27, 42, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.premium-section-surface--dark {
+  border: 1px solid rgba(198, 168, 75, 0.24);
+  box-shadow:
+    0 32px 90px rgba(13, 27, 42, 0.2),
+    0 10px 34px rgba(13, 27, 42, 0.14),
+    inset 0 1px 0 rgba(228, 212, 154, 0.08);
+}
+
+@media (max-width: 640px) {
+  .premium-section-surface {
+    margin: 0.5rem;
+    border-radius: 1.35rem;
+    box-shadow: 0 16px 44px rgba(13, 27, 42, 0.1);
+  }
+}
+
 /* Keep the experience calm and accessible when reduced motion is requested. */
 @media (prefers-reduced-motion: reduce) {
   html {
