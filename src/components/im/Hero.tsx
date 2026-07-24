@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ArrowRight, Shield, Scale, Clock, Award, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { ScrollReveal } from "@/components/im/ScrollReveal";
 
@@ -143,11 +143,13 @@ function CinematicProgress({
   onDone: () => void;
   index: number;
 }) {
+  const reduceMotion = useReducedMotion();
+
   useEffect(() => {
-    if (!active) return;
+    if (!active || reduceMotion) return;
     const timeout = setTimeout(onDone, SLIDE_INTERVAL);
     return () => clearTimeout(timeout);
-  }, [active, onDone]);
+  }, [active, onDone, reduceMotion]);
 
   return (
     <div className="relative w-full h-[2px] rounded-full overflow-hidden bg-white/10">
@@ -158,8 +160,8 @@ function CinematicProgress({
           boxShadow: "0 0 8px rgba(198,168,75,0.4)",
         }}
         initial={{ width: "0%" }}
-        animate={active ? { width: "100%" } : { width: "0%" }}
-        transition={active ? { duration: SLIDE_INTERVAL / 1000, ease: "linear" } : { duration: 0.2 }}
+        animate={active && !reduceMotion ? { width: "100%" } : { width: "0%" }}
+        transition={active && !reduceMotion ? { duration: SLIDE_INTERVAL / 1000, ease: "linear" } : { duration: 0.2 }}
         key={`progress-${index}`}
       />
     </div>
@@ -171,18 +173,10 @@ function CinematicProgress({
 /* ------------------------------------------------------------------ */
 
 export function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
-
-  // Parallax: background image scrolls at 0.3x speed
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.6], [0, 0.4]);
+  const reduceMotion = useReducedMotion();
 
   // Auto-advance carousel
   const advanceSlide = useCallback(() => {
@@ -220,13 +214,12 @@ export function Hero() {
   return (
     <section
       id="home"
-      ref={sectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden wave-divider-bottom"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* ====== Background Image Carousel ====== */}
-      <motion.div className="absolute inset-0 z-0" style={{ y: bgY }}>
+      <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -239,8 +232,8 @@ export function Hero() {
             {/* Ken Burns zoom/pan wrapper */}
             <motion.div
               className="absolute inset-0"
-              initial={slide.kenBurns.initial}
-              animate={slide.kenBurns.animate}
+              initial={reduceMotion ? false : { scale: 1 }}
+              animate={reduceMotion ? { scale: 1 } : { scale: 1.035 }}
               transition={{
                 duration: SLIDE_INTERVAL / 1000 + TRANSITION_DURATION,
                 ease: "linear",
@@ -258,7 +251,7 @@ export function Hero() {
             </motion.div>
           </motion.div>
         </AnimatePresence>
-      </motion.div>
+      </div>
 
       {/* ====== Ultra Premium Cinematic Overlays ====== */}
       {/* Dynamic per-slide dark overlay */}
@@ -283,48 +276,6 @@ export function Hero() {
       {/* Letterbox bars for cinematic feel */}
       <div className="absolute top-0 left-0 right-0 h-[3vh] bg-[#0D1B2A] z-[3] pointer-events-none" />
       <div className="absolute bottom-0 left-0 right-0 h-[5vh] bg-[#0D1B2A] z-[3] pointer-events-none" />
-      {/* Scroll-based darkening */}
-      <motion.div
-        className="absolute inset-0 z-[2] bg-[#0D1B2A]"
-        style={{ opacity: overlayOpacity }}
-      />
-
-      {/* ====== Animated Gold Scan Line ====== */}
-      <motion.div
-        className="absolute left-0 right-0 h-px z-[3] pointer-events-none"
-        style={{
-          background: "linear-gradient(90deg, transparent 0%, rgba(198,168,75,0.15) 20%, rgba(198,168,75,0.3) 50%, rgba(198,168,75,0.15) 80%, transparent 100%)",
-        }}
-        animate={{ top: ["0%", "100%"] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-      />
-
-      {/* ====== Animated Ambient Gold Orbs ====== */}
-      <motion.div
-        className="absolute top-[15%] left-[10%] w-[420px] h-[420px] rounded-full z-[4] pointer-events-none"
-        style={{
-          background: "radial-gradient(circle, rgba(198,168,75,0.12) 0%, transparent 70%)",
-        }}
-        animate={{ x: [0, 30, -20, 0], y: [0, -20, 15, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-[20%] right-[8%] w-[360px] h-[360px] rounded-full z-[4] pointer-events-none"
-        style={{
-          background: "radial-gradient(circle, rgba(228,212,154,0.08) 0%, transparent 70%)",
-        }}
-        animate={{ x: [0, -25, 20, 0], y: [0, 18, -12, 0] }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute top-[50%] left-[55%] w-[280px] h-[280px] rounded-full z-[4] pointer-events-none"
-        style={{
-          background: "radial-gradient(circle, rgba(198,168,75,0.06) 0%, transparent 70%)",
-        }}
-        animate={{ x: [0, 15, -30, 0], y: [0, -30, 10, 0] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-      />
-
       {/* ====== Decorative Gold Corner Lines ====== */}
       <div className="absolute top-8 left-8 z-[5] hidden lg:block">
         <motion.div
@@ -364,15 +315,11 @@ export function Hero() {
       {/* ====== Floating &quot;Est. 2023&quot; Badge ====== */}
       <motion.div
         className="absolute top-28 right-8 z-[6] hidden lg:flex flex-col items-center gap-2"
-        animate={{ y: [0, -8, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="relative">
-          <motion.div
-            className="absolute inset-[-6px] rounded-full border border-brand-gold/40"
-            animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.1, 0.4] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          />
           <div className="w-20 h-20 rounded-full border border-brand-gold/60 bg-[#0D1B2A]/80 backdrop-blur-sm flex items-center justify-center">
             <Shield className="w-7 h-7 text-brand-gold" strokeWidth={1.5} />
           </div>
@@ -486,8 +433,8 @@ export function Hero() {
           <motion.a
             href="#contact"
             className="btn-premium inline-flex items-center gap-2 px-7 py-3.5 font-body text-sm rounded-md"
-            animate={{ y: [0, -4, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            whileHover={reduceMotion ? undefined : { y: -2 }}
+            transition={{ duration: 0.2 }}
           >
             Book Free Consultation
             <ArrowRight className="w-4 h-4" />
@@ -578,8 +525,6 @@ export function Hero() {
             >
               <motion.div
                 className="w-1 h-1.5 rounded-full bg-brand-gold/70"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
               />
             </motion.div>
           </div>
