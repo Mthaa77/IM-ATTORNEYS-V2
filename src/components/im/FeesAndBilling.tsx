@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, useInView, animate } from "framer-motion";
-import { useRef, useCallback, useState, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef, useCallback, useState } from "react";
 import {
   MessageSquare,
   TrendingUp,
@@ -205,16 +205,6 @@ function TierContent({
 function CenterHub() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const angle = useMotionValue(0);
-
-  useEffect(() => {
-    const controls = animate(angle, 360, {
-      duration: 20,
-      repeat: Infinity,
-      ease: "linear",
-    });
-    return () => controls.stop();
-  }, [angle]);
 
   return (
     <motion.div
@@ -224,13 +214,12 @@ function CenterHub() {
       animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
       transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
     >
-      {/* Pulsing outer ring */}
+      {/* Layered outer ring */}
       <div
-        className="absolute rounded-full animate-ping"
+        className="absolute rounded-full"
         style={{
           inset: -8,
           border: "2px solid rgba(198,168,75,0.3)",
-          animationDuration: "3s",
         }}
       />
 
@@ -240,16 +229,14 @@ function CenterHub() {
         style={{
           inset: -4,
           border: "1px solid rgba(198,168,75,0.2)",
-          animation: "goldPulseRing 3s ease-out infinite",
         }}
       />
 
-      {/* Rotating dashed border */}
-      <motion.div
+      {/* Dashed border */}
+      <div
         className="absolute rounded-full"
         style={{
           inset: -2,
-          rotate: angle,
           border: "2px dashed rgba(198,168,75,0.25)",
         }}
       />
@@ -491,36 +478,6 @@ function DesktopLayout() {
           animate={{ pathLength: 1, opacity: 1 }}
           transition={{ duration: 1.2, delay: 1.0 }}
         />
-        {/* Animated dot traveling on left line */}
-        <motion.circle
-          r="3"
-          fill="#C6A84B"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: [0, 0.8, 0] }}
-          transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
-        >
-          <animateMotion
-            dur="3s"
-            repeatCount="indefinite"
-            path="M620,320 L195,320"
-            begin="1.5s"
-          />
-        </motion.circle>
-        {/* Animated dot traveling on right line */}
-        <motion.circle
-          r="3"
-          fill="#C6A84B"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: [0, 0.8, 0] }}
-          transition={{ duration: 3, repeat: Infinity, delay: 2.5 }}
-        >
-          <animateMotion
-            dur="3s"
-            repeatCount="indefinite"
-            path="M680,320 L1105,320"
-            begin="2.5s"
-          />
-        </motion.circle>
       </svg>
 
       {/* Center Hub */}
@@ -579,7 +536,7 @@ export function FeesAndBilling() {
   return (
     <section
       id="fees"
-      className="relative py-20 sm:py-28 lg:py-36 overflow-hidden"
+      className="premium-section-surface premium-section-surface--dark relative py-20 sm:py-28 lg:py-36 overflow-hidden"
       style={{ background: "#0D1B2A" }}
       aria-labelledby="fees-heading"
     >
